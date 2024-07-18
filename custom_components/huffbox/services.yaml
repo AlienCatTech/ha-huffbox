@@ -1,0 +1,6 @@
+toggle:
+  name: Toggle Lock
+  description: Toggle the lock state between locked and unlocked.
+  target:
+    entity:
+      domain: lock

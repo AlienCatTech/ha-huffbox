@@ -1,0 +1,18 @@
+{
+	"rows": [
+		{
+			"cols": [
+				{
+					"component": "TextBox",
+					"props": {
+						"state": "text.huffbox_subject_name",
+						"type": "h1"
+					},
+					"posX": "middle",
+					"posY": "middle",
+					"nodeClass": "h-screen"
+				}
+			]
+		}
+	]
+}

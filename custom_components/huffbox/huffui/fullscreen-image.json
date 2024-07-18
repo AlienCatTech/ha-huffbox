@@ -1,0 +1,16 @@
+{
+	"rows": [
+		{
+			"cols": [
+				{
+					"component": "ImageBox",
+					"props": {
+						"state": "text.huffbox_subject_picture"
+					},
+					"posX": "middle",
+					"nodeClass": "h-screen"
+				}
+			]
+		}
+	]
+}

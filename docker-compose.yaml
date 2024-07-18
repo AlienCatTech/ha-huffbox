@@ -1,0 +1,20 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/AlienCatTech/ha-huffbox:latest
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    cap_add:
+      - SYS_RAWIO
+    devices:
+    - '/dev/gpiochip4:/dev/gpiochip4'
+    - '/dev/snd:/dev/snd'
+    - "/dev/spidev0.0:/dev/spidev0.0"
+    network_mode: host
+#    environment:
+#      - NO_COPY=true // by default, everytime when the container starts, it will overwride huffbox integration in the config folder

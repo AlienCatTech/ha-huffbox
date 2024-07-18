@@ -1,0 +1,16 @@
+{
+	"rows": [
+		{
+			"cols": [
+				{
+					"component": "VideoBox",
+					"props": {
+						"state": "text.huffbox_video_link"
+					},
+					"posX": "middle",
+					"nodeClass": "h-screen"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,21 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    cap_add:
+      - SYS_RAWIO
+    # devices:
+    # - '/dev/gpiochip4:/dev/gpiochip4'
+    # - '/dev/snd:/dev/snd'
+    # - "/dev/spidev0.0:/dev/spidev0.0"
+    # network_mode: host
+    ports:
+      - 8123:8123

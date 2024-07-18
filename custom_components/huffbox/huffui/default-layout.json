@@ -1,0 +1,217 @@
+{
+	"rows": [
+		{
+			"cols": [
+				{
+					"width": "md:w-1/3",
+					"alignHeight": true,
+					"nodeClass": "border-fix shadow-glow",
+					"rows": [
+						{
+							"component": "ImageBox",
+							"props": {
+								"state": "text.huffbox_subject_picture"
+							},
+							"posX": "middle",
+							"nodeClass": "h-160"
+						},
+						{
+							"component": "TextBox",
+							"props": {
+								"state": "text.huffbox_subject_name",
+								"type": "h1"
+							},
+							"posX": "middle",
+							"posY": "middle",
+							"nodeClass": "h-36"
+						}
+					]
+				},
+				{
+					"width": "md:w-2/3",
+					"alignHeight": true,
+					"rows": [
+						{
+							"cols": [
+								{
+									"component": "TextBoxOG",
+									"props": {
+										"text": "Alien Cat Technology",
+										"classList": "font-['Barcode'] md:text-7xl text-6xl text-center"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full md:my-0 my-4"
+								}
+							]
+						},
+						{
+							"cols": [
+								{
+									"component": "ClockBox",
+									"props": {
+										"state": "sensor.huffbox_second_passed",
+										"classList": "font-['Orbitron'] md:text-8xl text-6xl",
+										"type": "second"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								}
+							]
+						},
+						{
+							"nodeClass": "border-fix shadow-glow",
+							"cols": [
+								{
+									"width": "md:w-1/4",
+									"component": "HeartBox",
+									"props": {
+										"heartRateState": "sensor.huffbox_heart_rate",
+										"pulseState": "sensor.huffbox_pulse"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								},
+								{
+									"width": "md:w-1/4",
+									"component": "StatBox",
+									"props": {
+										"title": "SpO2",
+										"state": "sensor.huffbox_spo2",
+										"unit": "%"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								},
+								{
+									"width": "md:w-1/4",
+									"component": "StatBox",
+									"props": {
+										"title": "Resp Rate",
+										"state": "sensor.huffbox_resp",
+										"unit": "bpm"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								},
+								{
+									"width": "md:w-1/4",
+									"component": "StatBox",
+									"props": {
+										"title": "Temp",
+										"state": "sensor.huffbox_temp",
+										"unit": "F"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								}
+							]
+						},
+						{
+							"nodeClass": "border-fix shadow-glow",
+							"layoutClass": "h-48",
+							"cols": [
+								{
+									"width": "md:w-1/3",
+									"component": "SwitchBox",
+									"props": {
+										"name": "Door Lock",
+										"state": "lock.huffbox_control_lock"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								},
+								{
+									"width": "md:w-1/3",
+									"component": "SwitchBox",
+									"props": {
+										"name": "Light",
+										"state": "light.huffbox_control_light"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								},
+								{
+									"width": "md:w-1/3",
+									"component": "SwitchBox",
+									"props": {
+										"name": "Fan",
+										"state": "fan.huffbox_control_fan"
+									},
+									"posX": "middle",
+									"posY": "middle",
+									"nodeClass": "h-full"
+								}
+							]
+						},
+						{
+							"cols": [
+								{
+									"component": "FancyBannerBox",
+									"props": {
+										"state": "text.huffbox_banner"
+									},
+									"nodeClass": "h-full",
+									"posY": "middle"
+								}
+							]
+						}
+					],
+					"nodeClass": "h-24 border-fix shadow-glow"
+				}
+			]
+		},
+		{
+			"cols": [
+				{
+					"width": "md:w-2/6",
+					"component": "ScrollBox",
+					"props": {
+						"state": "text.huffbox_live_chat"
+					},
+					"nodeClass": "h-72 border-fix shadow-glow"
+				},
+				{
+					"width": "md:w-3/6",
+					"component": "ECGBox",
+					"props": {
+						"state": "sensor.huffbox_heart_rate"
+					},
+					"nodeClass": "border-fix shadow-glow h-72"
+				},
+				{
+					"width": "md:w-1/6",
+					"component": "QRBox",
+					"props": {
+						"type": "wifi",
+						"title": "HuffBox Wifi",
+						"data": "HuffBox||huffbox123"
+					},
+					"posX": "middle",
+					"posY": "middle",
+					"alignHeight": true,
+					"nodeClass": "border-fix shadow-glow"
+				},
+				{
+					"width": "md:w-1/6",
+					"component": "QRBox",
+					"props": {
+						"title": "Open App:\nhuffbox.local",
+						"data": "http://huffbox.local/settings"
+					},
+					"posX": "middle",
+					"posY": "middle",
+					"alignHeight": true,
+					"nodeClass": "border-fix shadow-glow"
+				}
+			]
+		}
+	]
+}

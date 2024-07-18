@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+html,
+body {
+	@apply h-full;
+}
+
+:root [data-theme='rocket'] {
+	background-image: none;
+	background-color: #00000010;
+}
+
+/* rocket theme */
+@font-face {
+	font-family: 'Space Grotesk';
+	src: url('/fonts/SpaceGrotesk.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Barcode';
+	src: url('/fonts/LibreBarcode39Text-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Orbitron';
+	src: url('/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+.border-fix {
+	background-clip: content-box;
+	border: solid 4px transparent;
+	box-shadow:
+		0 0 0 4px rgb(var(--color-primary-500)),
+		0 0 15px 4px rgb(var(--color-primary-500));
+}
+
+.u-under {
+	display: none;
+}
+
+.u-over {
+	display: none;
+}
+
+.u-axis {
+	display: none;
+}
+
+.uplot canvas {
+	stroke: rgb(var(--color-error-500));
+	stroke-width: 5;
+	filter: drop-shadow(0 0 15px rgb(var(--color-error-500)));
+}
