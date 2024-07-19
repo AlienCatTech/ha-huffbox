@@ -42,7 +42,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: HuffBoxConfigEntry) -> b
     )
     entry.async_on_unload(huffbox.close)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-    load_dashboard(hass)
+    await load_dashboard(hass)
 
     async def toggle_lock_service(call: ServiceCall) -> None:
         entity_id = call.data.get("entity_id")

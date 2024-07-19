@@ -1,11 +1,12 @@
 from homeassistant.components import frontend
+from homeassistant.components.http import StaticPathConfig
 from homeassistant.components.lovelace.dashboard import LovelaceYAML
 from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
 
 
-def load_dashboard(hass: HomeAssistant) -> None:
+async def load_dashboard(hass: HomeAssistant) -> None:
     sidepanel_title = DOMAIN + " Dashboard"
     sidepanel_icon = "mdi:alpha-d-box"
 
@@ -21,10 +22,14 @@ def load_dashboard(hass: HomeAssistant) -> None:
 
     config = LovelaceYAML(hass, dashboard_url, dashboard_config)
 
-    hass.http.register_static_path(
-        "/huffbox/huffui",
-        hass.config.path("custom_components/huffbox/huffui"),
-        cache_headers=False,
+    await hass.http.async_register_static_paths(
+        [
+            StaticPathConfig(
+                "/huffbox/huffui",
+                hass.config.path("custom_components/huffbox/huffui"),
+                cache_headers=False,
+            )
+        ]
     )
     frontend.add_extra_js_url(hass, "/huffbox/huffui/huffui.js")
     frontend.async_register_built_in_panel(

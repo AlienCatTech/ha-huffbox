@@ -71,7 +71,7 @@ class HuffboxUI extends HTMLElement {
 		};
 
 		this._hass.connection.subscribeEvents(() => {
-			location.reload();
+			location.href = "/huffbox-dashboard?kiosk"
 		}, 'huffbox_refresh_event');
 
 		card.appendChild(iframe);

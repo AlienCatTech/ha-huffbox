@@ -1,6 +1,7 @@
 FROM homeassistant/home-assistant:latest
 
 RUN apk add --no-cache libgpiod
+RUN pip install gpiod==2.2.0 luma.led-matrix==1.7.1
 COPY ./custom_components/huffbox /setup/custom_components/huffbox
 RUN addgroup -S -g 1000 user && adduser -S -u 1000 -G user user && \
     addgroup -S -g 994 gpio && adduser user gpio && \

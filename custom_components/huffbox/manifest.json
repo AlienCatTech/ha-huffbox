@@ -4,16 +4,16 @@
     "codeowners": [
         "@alien-cat0"
     ],
+    "config_flow": true,
     "dependencies": [
         "lovelace"
     ],
-    "config_flow": true,
     "documentation": "https://github.com/AlienCatTech/ha-huffbox",
     "iot_class": "local_polling",
+    "issue_tracker": "https://github.com/AlienCatTech/ha-huffbox/issues",
     "requirements": [
         "gpiod==2.2.0",
         "luma.led-matrix==1.7.1"
     ],
-    "issue_tracker": "https://github.com/AlienCatTech/ha-huffbox/issues",
     "version": "0.1.0"
 }
