@@ -2,9 +2,9 @@
 
 [![GitHub Release][releases-shield]][releases]
 [![GitHub Activity][commits-shield]][commits]
-[![Create and publish a Docker image](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/docker-publish.yaml/badge.svg)](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/docker-publish.yaml)
-[![Lint](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/lint.yml/badge.svg)](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/lint.yml)
-[![Validate](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/validate.yml/badge.svg)](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/validate.yml)
+[![GitHub Activity][docker-publish-shield]][docker-publish-shield]
+[![GitHub Activity][lint-shield]][lint-shield]
+[![GitHub Activity][validate-shield]][validate-shield]
 
 _Integration to integrate with [huffbox][huffbox]._
 
@@ -85,6 +85,11 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 
 [huffbox]: https://github.com/aliencattech/ha-huffbox
 [commits-shield]: https://img.shields.io/github/commit-activity/y/aliencattech/ha-huffbox.svg?style=for-the-badge
+[docker-publish-shield]: https://img.shields.io/github/actions/workflow/status/aliencattech/ha-huffbox/docker-publish.yaml?style=for-the-badge
+[lint-shield]: https://img.shields.io/github/actions/workflow/status/aliencattech/ha-huffbox/lint.yml?style=for-the-badge&label=lint
+[validate-shield]: https://img.shields.io/github/actions/workflow/status/aliencattech/ha-huffbox/validate.yml?style=for-the-badge&label=validate
+
+
 [commits]: https://github.com/aliencattech/ha-huffbox/commits/main
 [exampleimg]: example.png
 [releases-shield]: https://img.shields.io/github/release/aliencattech/ha-huffbox.svg?style=for-the-badge
