@@ -2,6 +2,9 @@
 
 [![GitHub Release][releases-shield]][releases]
 [![GitHub Activity][commits-shield]][commits]
+[![Create and publish a Docker image](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/docker-publish.yaml/badge.svg)](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/docker-publish.yaml)
+[![Lint](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/lint.yml/badge.svg)](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/lint.yml)
+[![Validate](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/validate.yml/badge.svg)](https://github.com/AlienCatTech/ha-huffbox/actions/workflows/validate.yml)
 
 _Integration to integrate with [huffbox][huffbox]._
 
