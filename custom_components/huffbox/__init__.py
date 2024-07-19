@@ -33,6 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: HuffBoxConfigEntry) -> b
     """Set up Hello World from a config entry."""
     huffbox = HuffBox(hass, entry)
     await huffbox.led.start()
+    await huffbox.gpio.start()
     coordinator = RandomNumberCoordinator(hass, huffbox)
     await coordinator.async_config_entry_first_refresh()
     entry.runtime_data = HuffBoxData(

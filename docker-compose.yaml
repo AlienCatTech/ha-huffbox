@@ -1,7 +1,7 @@
 services:
   homeassistant:
     container_name: homeassistant
-    image: ghcr.io/AlienCatTech/ha-huffbox:latest
+    image: ghcr.io/aliencattech/ha-huffbox:latest
     volumes:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro

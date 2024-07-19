@@ -23,7 +23,7 @@ You also need to enable GPIO and SPI on your Raspi.
 This custom integration uses low level hardware IO (SPI and GPIO), so it's a little different than other integrations.
 
 ### Using Patched Docker Image
-This patched home assistant image is all you need `ghcr.io/AlienCatTech/ha-huffbox:latest`
+This patched home assistant image is all you need `ghcr.io/aliencattech/ha-huffbox:latest`
 > The only patch applied is adding libgpiod to the latest official home assistant image
 
 ### Manual Install

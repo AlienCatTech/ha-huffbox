@@ -4,10 +4,6 @@ from pathlib import Path
 from threading import Event, Thread
 
 from homeassistant.core import HomeAssistant
-from luma.core.interface.serial import noop, spi
-from luma.core.render import canvas
-from luma.core.virtual import viewport
-from luma.led_matrix.device import max7219
 from PIL import ImageFont
 
 from .const import LOGGER
@@ -50,18 +46,19 @@ class HuffBoxLED:
         self.effect_list = [EFFECT_TIMER, EFFECT_COUNTDOWN, EFFECT_CUSTOM_TEXT]
         self.effect = self.effect_list[0]
         self._is_hide = False
-        self.thread = Thread(target=self.display)
 
     async def start(self) -> None:
         if self.is_led():
             await self.hass.async_add_executor_job(self.init_spi)
-            self.virtual = viewport(self.device, width=10000, height=8)
-            self.thread.start()
 
     def is_led(self) -> bool:
         return Path(self.spi_path).exists()
 
     def init_spi(self) -> None:
+        from luma.core.interface.serial import noop, spi
+        from luma.core.virtual import viewport
+        from luma.led_matrix.device import max7219
+
         self.serial = spi(port=0, device=0, gpio=noop())
         self.device = max7219(
             self.serial,
@@ -70,6 +67,9 @@ class HuffBoxLED:
             block_orientation=90,
             blocks_arranged_in_reverse_order=True,
         )
+        self.virtual = viewport(self.device, width=10000, height=8)
+        thread = Thread(target=self.display)
+        thread.start()
 
     def set_font(self, font: str) -> None:
         if font == "normal":
@@ -96,6 +96,8 @@ class HuffBoxLED:
         self._is_hide = True
 
     def display(self) -> None:
+        from luma.core.render import canvas
+
         try:
             if not self.is_led() or not hasattr(self, "device"):
                 return
