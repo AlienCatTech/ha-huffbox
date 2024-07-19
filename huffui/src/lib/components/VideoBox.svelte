@@ -10,7 +10,7 @@
 
 <div class="flex items-center justify-center h-screen">
 	<!-- svelte-ignore a11y-media-has-caption -->
-	<video class="max-w mx-auto" controls autoplay muted loop width="1900">
+	<video class="max-w mx-auto max-h-full" controls autoplay muted loop width="1900">
 		<source src={url} type="video/mp4" />
 		<!-- Fallback for browsers that don't support the video element -->
 		Your browser does not support the video tag.
