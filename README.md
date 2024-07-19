@@ -29,6 +29,15 @@ This custom integration uses low level hardware IO (SPI and GPIO), so it's a lit
 This patched home assistant image is all you need `ghcr.io/aliencattech/ha-huffbox:latest`
 > The only patch applied is adding libgpiod to the latest official home assistant image
 
+### Use  HACS
+1. HACS tab -> Integrations -> Click 3 dots -> "Custom Repositories"
+1. Repo `https://github.com/AlienCatTech/ha-huffbox`, Category: `integration`
+1. There should be a "New Repository", click it and install
+    1. If not there, click "Explore" at the corner and type `huffbox`
+1. Restart Home Assistant
+1. In the HA UI go to "Configuration" -> "Integrations" click "+" and search for "HuffBox"
+
+
 ### Manual Install
 1. Using the tool of choice open the directory (folder) for your HA configuration (where you find `configuration.yaml`).
 1. If you do not have a `custom_components` directory (folder) there, you need to create it.
