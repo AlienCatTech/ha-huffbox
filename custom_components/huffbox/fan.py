@@ -1,15 +1,17 @@
-from typing import Any
-
 from homeassistant.components.fan import FanEntity
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .data import HuffBoxConfigEntry
 from .entity import HuffBoxBaseEntity
 
 
 async def async_setup_entry(
-    hass, entry: HuffBoxConfigEntry, async_add_entities
+    hass: HomeAssistant,  # noqa: ARG001
+    entry: HuffBoxConfigEntry,
+    async_add_entities: AddEntitiesCallback,
 ) -> None:
-    async_add_entities([HuffBoxFan(entry)], True)
+    async_add_entities([HuffBoxFan(entry)], update_before_add=True)
 
 
 class HuffBoxFan(HuffBoxBaseEntity, FanEntity):
@@ -17,17 +19,16 @@ class HuffBoxFan(HuffBoxBaseEntity, FanEntity):
         super().__init__(config_entry, "control_fan")
 
     @property
-    def is_on(self):
+    def is_on(self) -> bool:
         return self.huffbox.gpio.get_gpio_state("fan")
 
     async def async_turn_on(
         self,
-        speed: str | None = None,
-        percentage: int | None = None,
-        preset_mode: str | None = None,
-        **kwargs: Any,
+        speed: str | None = None,  # noqa: ARG002
+        percentage: int | None = None,  # noqa: ARG002
+        preset_mode: str | None = None,  # noqa: ARG002
     ) -> None:
-        return self.huffbox.gpio.set_gpio_state("fan", True)
+        self.huffbox.gpio.set_gpio_state("fan", state=True)
 
-    async def async_turn_off(self, **kwargs):
-        return self.huffbox.gpio.set_gpio_state("fan", False)
+    async def async_turn_off(self) -> None:
+        self.huffbox.gpio.set_gpio_state("fan", state=False)

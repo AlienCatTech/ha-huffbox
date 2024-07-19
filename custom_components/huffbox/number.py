@@ -1,4 +1,6 @@
 from homeassistant.components.number import NumberEntity
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
 
 from .data import HuffBoxConfigEntry
@@ -6,7 +8,9 @@ from .entity import HuffBoxBaseEntity
 
 
 async def async_setup_entry(
-    hass, entry: HuffBoxConfigEntry, async_add_entities
+    hass: HomeAssistant,  # noqa: ARG001
+    entry: HuffBoxConfigEntry,
+    async_add_entities: AddEntitiesCallback,
 ) -> None:
     async_add_entities(
         [
@@ -14,7 +18,7 @@ async def async_setup_entry(
             GPIOPinEntity(entry, "fan"),
             GPIOPinEntity(entry, "lock"),
         ],
-        True,
+        update_before_add=True,
     )
 
 
@@ -26,7 +30,7 @@ class GPIOPinEntity(HuffBoxBaseEntity, RestoreEntity, NumberEntity):
         self.switch_name = switch_name
 
     @property
-    def native_value(self):
+    def native_value(self) -> int:
         return self.huffbox.gpio.get_gpio_pin(self.switch_name)
 
     async def async_set_native_value(self, value: int) -> None:

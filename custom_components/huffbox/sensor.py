@@ -1,4 +1,6 @@
 from homeassistant.components.sensor import SensorEntity
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from custom_components.huffbox.common import get_lan_ip
@@ -8,7 +10,9 @@ from .entity import HuffBoxBaseEntity
 
 
 async def async_setup_entry(
-    hass, entry: HuffBoxConfigEntry, async_add_entities
+    hass: HomeAssistant,  # noqa: ARG001
+    entry: HuffBoxConfigEntry,
+    async_add_entities: AddEntitiesCallback,
 ) -> None:
     async_add_entities(
         [
@@ -17,10 +21,10 @@ async def async_setup_entry(
             MockSensor(entry, "spo2"),
             MockSensor(entry, "resp"),
             MockSensor(entry, "temp"),
-            SecondPassedSensor(entry),
+            MockSensor(entry, "second_passed"),
             IPSensor(entry),
         ],
-        True,
+        update_before_add=True,
     )
 
 
@@ -35,22 +39,8 @@ class MockSensor(
         self._name = name
 
     @property
-    def native_value(self):
+    def native_value(self) -> int:
         return self.coordinator.data[self._name]
-
-
-class SecondPassedSensor(
-    HuffBoxBaseEntity,
-    SensorEntity,
-):
-    def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
-        super().__init__(config_entry, "second_passed")
-        self._state = 0
-
-    @property
-    def native_value(self):
-        """Return the state of the sensor."""
-        return self.huffbox.second_passed
 
 
 class IPSensor(
@@ -62,6 +52,6 @@ class IPSensor(
         self._state = get_lan_ip()
 
     @property
-    def native_value(self):
+    def native_value(self) -> str:
         """Return the state of the sensor."""
         return self._state

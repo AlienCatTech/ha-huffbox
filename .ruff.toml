@@ -15,10 +15,17 @@ ignore = [
     "COM812", # incompatible with formatter
     "ISC001", # incompatible with formatter
     "D107", # Missing docstring in __init__
+    "D104", # Missing docstring in public package
     "D103", # Missing docstring in public function
     "D102", # Missing docstring in public method
     "D101", # Missing docstring in public class
     "D100", # Missing docstring in public module
+    "FBT001", # Boolean-typed positional argument in function definition
+    "FBT002", # Boolean default positional argument in function definition
+    "PLR0913", # Too many arguments in function definition
+    "TRY002", # Create your own exception
+    "BLE001", # Do not catch blind exception
+    "S311", # Standard pseudo-random generators are not suitable for cryptographic purposes
 ]
 
 [lint.flake8-pytest-style]

@@ -1,16 +1,14 @@
 # https://www.home-assistant.io/integrations/default_config/
 default_config:
 
-# https://www.home-assistant.io/integrations/homeassistant/
-homeassistant:
-  debug: true
-
+ 
 # https://www.home-assistant.io/integrations/logger/
 logger:
   default: info
   logs:
     custom_components.huffbox: debug
 
+# https://www.home-assistant.io/integrations/homeassistant/
 homeassistant:
   auth_providers:
     - type: trusted_networks
@@ -21,3 +19,4 @@ homeassistant:
         - 192.168.0.0/16
       allow_bypass_login: true
     - type: homeassistant
+  # debug: true

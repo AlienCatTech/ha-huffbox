@@ -1,4 +1,6 @@
 from homeassistant.components.text import TextEntity
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
 
 from .data import HuffBoxConfigEntry
@@ -6,7 +8,9 @@ from .entity import HuffBoxBaseEntity
 
 
 async def async_setup_entry(
-    hass, entry: HuffBoxConfigEntry, async_add_entities
+    hass: HomeAssistant,  # noqa: ARG001
+    entry: HuffBoxConfigEntry,
+    async_add_entities: AddEntitiesCallback,
 ) -> None:
     async_add_entities(
         [
@@ -18,7 +22,7 @@ async def async_setup_entry(
             HuffTextEntity(entry, "live_chat", "live-chat.json"),
             HuffTextEntity(entry, "video_link", "hypno.mp4"),
         ],
-        True,
+        update_before_add=True,
     )
 
 
@@ -30,7 +34,7 @@ class HuffTextEntity(HuffBoxBaseEntity, RestoreEntity, TextEntity):
         self._state = default
 
     @property
-    def native_value(self):
+    def native_value(self) -> str:
         return self._state
 
     async def async_set_value(self, value: str) -> None:

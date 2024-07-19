@@ -7,7 +7,7 @@ def countdown_until(time_string: str) -> str:
     hours, minutes, seconds = map(int, time_string.split(":"))
 
     # Create a datetime object for the target time
-    now = datetime.now()
+    now = datetime.now()  # noqa: DTZ005
     target_time = now.replace(hour=hours, minute=minutes, second=seconds, microsecond=0)
 
     # If the target time is earlier than now, set it to tomorrow
@@ -26,18 +26,18 @@ def countdown_until(time_string: str) -> str:
     return f"{countdown_hours:02d}:{countdown_minutes:02d}:{countdown_seconds:02d}"
 
 
-def snake_to_title(snake_str):
+def snake_to_title(snake_str: str) -> str:
     return " ".join(word.capitalize() for word in snake_str.split("_"))
 
 
-def get_lan_ip():
+def get_lan_ip() -> str:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         # doesn't even have to be reachable
-        s.connect(('10.0.0.0', 0))
-        IP = s.getsockname()[0]
+        s.connect(("10.0.0.0", 0))
+        ip = s.getsockname()[0]
     except Exception:
-        IP = socket.gethostbyname(socket.gethostname())
+        ip = socket.gethostbyname(socket.gethostname())
     finally:
         s.close()
-    return IP
+    return ip

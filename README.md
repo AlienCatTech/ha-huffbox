@@ -42,6 +42,7 @@ Please use the docker-compose.yaml file in the repo to setup your docker contain
 ### Kiosk mode
 HuffBox dashboard is designed running in a chromium kiosk mode without any manual input. You can use `http://localhost:8123/huffbox-dashboard?kiosk`. The kiosk query param is to hide the side bar.
 
+To bypass login, you can use trusted_networks. See configuration.yaml included in the repo
 ## Entities
 
 **This integration will set up the following platforms.**
@@ -79,9 +80,9 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 
 ***
 
-[huffbox]: https://github.com/aliencattech/huffbox
-[commits-shield]: https://img.shields.io/github/commit-activity/y/aliencattech/huffbox.svg?style=for-the-badge
-[commits]: https://github.com/aliencattech/huffbox/commits/main
+[huffbox]: https://github.com/aliencattech/ha-huffbox
+[commits-shield]: https://img.shields.io/github/commit-activity/y/aliencattech/ha-huffbox.svg?style=for-the-badge
+[commits]: https://github.com/aliencattech/ha-huffbox/commits/main
 [exampleimg]: example.png
-[releases-shield]: https://img.shields.io/github/release/aliencattech/huffbox.svg?style=for-the-badge
-[releases]: https://github.com/aliencattech/huffbox/releases
+[releases-shield]: https://img.shields.io/github/release/aliencattech/ha-huffbox.svg?style=for-the-badge
+[releases]: https://github.com/aliencattech/ha-huffbox/releases

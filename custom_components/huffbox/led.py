@@ -1,6 +1,6 @@
-import os
 import time
 import traceback
+from pathlib import Path
 from threading import Event, Thread
 
 from homeassistant.core import HomeAssistant
@@ -12,21 +12,19 @@ from PIL import ImageFont
 
 from .const import LOGGER
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-thin_font = (ImageFont.truetype(os.path.join(current_dir, "fonts", "slkscr.ttf"), 8), 7)
+current_dir = Path(__file__).parent.resolve()
+thin_font = (ImageFont.truetype(current_dir / "fonts" / "slkscr.ttf", 8), 7)
 normal_font = (
-    ImageFont.truetype(os.path.join(current_dir, "fonts", "pixelmix.ttf"), 8),
+    ImageFont.truetype(current_dir / "fonts" / "pixelmix.ttf", 8),
     6,
 )
 bold_font = (
-    ImageFont.truetype(
-        os.path.join(current_dir, "fonts", "Super Mario Bros. 2.ttf"), 8
-    ),
+    ImageFont.truetype(current_dir / "fonts" / "Super Mario Bros. 2.ttf", 8),
     8,
 )
 
 
-def sec_to_hms(seconds: int):
+def sec_to_hms(seconds: int) -> str:
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = seconds % 60
@@ -39,7 +37,7 @@ EFFECT_CUSTOM_TEXT = "Custom Text"
 
 
 class HuffBoxLED:
-    def __init__(self, hass: HomeAssistant):
+    def __init__(self, hass: HomeAssistant) -> None:
         self.hass = hass
         self.spi_path = "/dev/spidev0.0"
         self.stop_event = Event()
@@ -54,16 +52,16 @@ class HuffBoxLED:
         self._is_hide = False
         self.thread = Thread(target=self.display)
 
-    async def start(self):
+    async def start(self) -> None:
         if self.is_led():
             await self.hass.async_add_executor_job(self.init_spi)
             self.virtual = viewport(self.device, width=10000, height=8)
             self.thread.start()
 
-    def is_led(self):
-        return os.path.exists(self.spi_path)
+    def is_led(self) -> bool:
+        return Path(self.spi_path).exists()
 
-    def init_spi(self):
+    def init_spi(self) -> None:
         self.serial = spi(port=0, device=0, gpio=noop())
         self.device = max7219(
             self.serial,
@@ -73,7 +71,7 @@ class HuffBoxLED:
             blocks_arranged_in_reverse_order=True,
         )
 
-    def set_font(self, font):
+    def set_font(self, font: str) -> None:
         if font == "normal":
             self.font = normal_font
         elif font == "thin":
@@ -81,23 +79,23 @@ class HuffBoxLED:
         elif font == "bold":
             self.font = bold_font
         else:
-            raise Exception("no font found")
+            msg = "no font found"
+            raise Exception(msg)
 
-    def is_on(self):
+    def is_on(self) -> bool:
         return not self._is_hide
-        # return self.is_led() and hasattr(self, "device")
 
-    def turn_on(self):
+    def turn_on(self) -> None:
         if self.is_led():
             self.device.show()
         self._is_hide = False
 
-    def turn_off(self):
+    def turn_off(self) -> None:
         if self.is_led():
             self.device.hide()
         self._is_hide = True
 
-    def display(self):
+    def display(self) -> None:
         try:
             if not self.is_led() or not hasattr(self, "device"):
                 return
@@ -138,14 +136,21 @@ class HuffBoxLED:
             LOGGER.exception(e)
             traceback.print_exc()
 
-    def show_text(self, text, scrolling=False, font="normal", center=False, speed=0.05):
+    def show_text(
+        self,
+        text: str,
+        scrolling: bool = False,
+        font: str = "normal",
+        center: bool = False,
+        speed: float = 0.05,
+    ) -> None:
         self.set_font(font)
         self.scrolling = scrolling
         self.text = text
         self.center = center
         self.speed = speed
 
-    def close(self):
+    def close(self) -> None:
         self.stop_event.set()
         if self.is_led() and hasattr(self, "device"):
             self.device.cleanup()
