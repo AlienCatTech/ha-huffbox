@@ -1,35 +1,23 @@
 {
     "title": "HuffBox",
     "config": {
-        "abort": {
-            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
-        },
-        "error": {
-            "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
-            "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-            "unknown": "[%key:common::config_flow::error::unknown%]"
-        },
         "step": {
             "user": {
                 "data": {
-                    "layout_config": "Layout Config"
+                    "light_gpio": "Light GPIO Pin",
+                    "fan_gpio": "Fan GPIO Pin",
+                    "lock_gpio": "Lock GPIO Pin"
                 }
             }
         }
     },
     "options": {
-        "abort": {
-            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
-        },
-        "error": {
-            "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
-            "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-            "unknown": "[%key:common::config_flow::error::unknown%]"
-        },
         "step": {
             "init": {
                 "data": {
-                    "layout_config": "Layout Config"
+                    "light_gpio": "Light GPIO Pin",
+                    "fan_gpio": "Fan GPIO Pin",
+                    "lock_gpio": "Lock GPIO Pin"
                 }
             }
         }

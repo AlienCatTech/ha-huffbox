@@ -25,7 +25,6 @@ PLATFORMS: list[str] = [
     Platform.SELECT,
     Platform.TIME,
     Platform.BUTTON,
-    Platform.NUMBER,
 ]
 
 

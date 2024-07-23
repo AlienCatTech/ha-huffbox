@@ -1,15 +1,21 @@
 from pathlib import Path
 
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
+from .common import GPIO_VALUES
 from .const import NAME
 
 
 class HuffBoxGPIO:
-    def __init__(self, hass: HomeAssistant) -> None:
+    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
         self.hass = hass
         self.lines = None
-        self.pin_map = {"lock": 26, "fan": 19, "light": 13}
+        self.pin_map = {
+            "lock": int(config_entry.data.get("lock_gpio", GPIO_VALUES["lock_gpio"])),
+            "fan": config_entry.data.get("fan_gpio", GPIO_VALUES["fan_gpio"]),
+            "light": config_entry.data.get("light_gpio", GPIO_VALUES["light_gpio"]),
+        }
         self._state = {"lock": False, "fan": False, "light": True}
         self.reverse_map = {"lock": False, "fan": False, "light": True}
         self.chip_name = "/dev/gpiochip4"

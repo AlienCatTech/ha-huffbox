@@ -41,3 +41,6 @@ def get_lan_ip() -> str:
     finally:
         s.close()
     return ip
+
+
+GPIO_VALUES = {"light_gpio": 26, "fan_gpio": 19, "lock_gpio": 13}

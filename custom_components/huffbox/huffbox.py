@@ -22,7 +22,7 @@ class HuffBox:
         self.entry = entry
         self.second_passed = 0
         self.is_locked = False
-        self.gpio = HuffBoxGPIO(hass)
+        self.gpio = HuffBoxGPIO(hass, entry)
         self.led = HuffBoxLED(hass)
 
     def update_second_passed(self) -> int:

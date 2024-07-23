@@ -19,3 +19,4 @@ config-base/*
 media/*
 config/*
 !config/configuration.yaml
+!config/www/.keep
