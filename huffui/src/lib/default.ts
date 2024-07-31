@@ -11,6 +11,7 @@ import ScrollBox from '$lib/components/ScrollBox.svelte';
 import QRBox from '$lib/components/QRBox.svelte';
 import VideoBox from '$lib/components/VideoBox.svelte';
 import ClockBox from '$lib/components/ClockBox.svelte';
+import ProgressBox from '$lib/components/ProgressBox.svelte';
 
 export const components = {
 	TextBox,
@@ -25,5 +26,6 @@ export const components = {
 	QRBox,
 	ScrollBox,
 	ClockBox,
+	ProgressBox,
 	VideoBox
 };
