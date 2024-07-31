@@ -13,12 +13,15 @@
 			return;
 		}
 
-		currentV = Number(states[currentState]);
-		maxV = Number(states[maxState]);
+		const n1 = Number(states[currentState]);
+		const n2 = Number(states[maxState]);
+
+		currentV = Math.min(n1, n2);
+		maxV = Math.max(n1, n2);
 	});
 </script>
 
-{#if currentV !== null && maxV !== undefined}
+{#if currentV !== undefined && maxV !== undefined}
 	<ProgressBar value={currentV} max={maxV} />
 {:else}
 	<LoadingBox />
