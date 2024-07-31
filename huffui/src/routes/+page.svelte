@@ -91,7 +91,7 @@
 				'text.huffbox_subject_picture': 'https://placedog.net/500',
 				'text.huffbox_subject_name': 'test',
 				'text.huffbox_live_chat': 'live-chat.json',
-				'text.huffbox_custom_layout_link': 'default-layout1.json',
+				'text.huffbox_custom_layout_link': 'custom.json',
 				'text.huffbox_video_link':
 					'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4',
 				'sensor.huffbox_heart_rate': '50',
