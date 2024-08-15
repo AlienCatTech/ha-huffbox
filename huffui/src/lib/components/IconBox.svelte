@@ -5,6 +5,7 @@
 	import lungs from '@iconify/icons-mdi/lungs';
 	import oxygenTank from '@iconify/icons-mdi/oxygen-tank';
 	import thermostat from '@iconify/icons-mdi/thermostat';
+	import circle from '@iconify/icons-mdi/circle';
 
 	export let type: string;
 	export let classList: string;
@@ -20,6 +21,8 @@
 	<Icon class={classList} icon={oxygenTank} />
 {:else if type === 'thermostat'}
 	<Icon class={classList} icon={thermostat} />
+{:else if type === 'circle'}
+	<Icon class={classList} icon={circle} />
 {:else}
 	<Icon class={classList} icon={type} />
 {/if}
