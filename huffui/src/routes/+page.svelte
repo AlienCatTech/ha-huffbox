@@ -110,7 +110,7 @@
 				'time.huffbox_time': '12:34:56'
 			};
 			stateStore.set(mock);
-			layoutConfig = await loadConfig('custom', mock['text.huffbox_custom_layout_link']);
+			layoutConfig = await loadConfig('default', mock['text.huffbox_custom_layout_link']);
 		}
 	});
 </script>
