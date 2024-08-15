@@ -3,7 +3,7 @@ rows:
   - gap: gap-4
     layoutClass: mx-4 mt-4
     cols:
-      - width: w-3/12
+      - width: md:w-3/12
         gap: gap-4
         rows:
           - component: ImageBox
@@ -18,7 +18,7 @@ rows:
                 nodeClass: bg-blue-500 w-28 h-28
                 posX: middle
                 posY: middle
-                width: w-3/12
+                width: md:w-3/12
               - rows:
                   - component: TextBox
                     props:
@@ -66,12 +66,12 @@ rows:
                 nodeClass: h-72 mx-4
                 posY: middle
                 posX: left
-      - width: w-9/12
+      - width: md:w-9/12
         rows:
           - gap: gap-4
             cols:
               - gap: gap-4
-                width: w-5/12
+                width: md:w-5/12
                 rows:
                   - component: TextBox
                     props:
@@ -80,12 +80,12 @@ rows:
                   - gap: gap-2
                     cols:
                       - component: TextBox
-                        width: w-1/12
+                        width: md:w-1/12
                         props:
                           text: ⏺︎
                           classList: text-3xl
                       - component: TextBox
-                        width: w-2/12
+                        width: md:w-2/12
                         props:
                           text: 27.M
                           classList: text-4xl text-blue-500 p-2
@@ -117,10 +117,10 @@ rows:
                                       text: 821 T0 5 RK
                                       classList: font-['Barcode'] text-2xl text-neutral-500
                                 posY: middle
-              - width: w-7/12
+              - width: md:w-7/12
                 rows:
                   - cols:
-                      - width: w-5/6
+                      - width: md:w-5/6
                         rows:
                           - nodeClass: border-b border-b-4 border-black pr-2
                             cols:
@@ -152,7 +152,7 @@ rows:
                               - component: CircleFX
                               - component: CircleFX
                               - component: CircleFX
-                      - width: w-1/6
+                      - width: md:w-1/6
                         component: IconBox
                         props:
                           type: file
@@ -180,13 +180,13 @@ rows:
                           text: NOGASM.SH
                           classList: text-5xl
                   - cols:
-                      - width: w-11/12
+                      - width: md:w-11/12
                         component: TextBox
                         props:
                           text: ENABLED
                           classList: text-3xl text-white p-2
                         nodeClass: bg-black
-                      - width: w-1/12
+                      - width: md:w-1/12
                         component: TextBox
                         props:
                           text: ⏺︎
@@ -223,7 +223,7 @@ rows:
                           classList: text-2xl text-right text-blue-500
                   - nodeClass: bg-neutral-400
                     cols:
-                      - width: w-1/12
+                      - width: md:w-1/12
                         component: TextBox
                         props:
                           text: ✖
@@ -320,14 +320,14 @@ rows:
                   - component: FancyBannerBox
                     props:
                       state: text.huffbox_banner
-                    nodeClass: h-32 mt-4 w-[42rem]
+                    wrapperClass: h-32 mt-4 md:w-160
                   - component: TextBox
                     props:
                       text: 'FILE DESCRIPTION: A SET OF OPEN-SOURCE PROJECTS AND DEVICES AIMED AT DETECTING AND PREDICTING ORGASMS USING HARDWARE AND SOFTWARE BASED ON ARDUINO TECHOLOGY. THE PRIMARY GOAL IS TO CREATE TOOLS THAT CAN MEASURE AROUSAL LEVELS AND PREDICT OR DETECT ORGASMS THROUGH VARIOUS PHYSIOLOGICAL INDICATORS'
                       classList: text-xs my-4
                   - gap: gap-4
                     cols:
-                      - width: w-fit
+                      - width: md:w-fit
                         component: TextBox
                         props:
                           text: '>'
@@ -335,13 +335,13 @@ rows:
                         nodeClass: bg-blue-500 w-8 h-8
                         posY: middle
                         posX: middle
-                      - width: w-8/12
+                      - width: md:w-8/12
                         component: TextBox
                         props:
                           text: GENERAL MONITOR
                           classList: text-blue-500 text-3xl
                         posY: middle
-                      - width: w-2/12
+                      - width: md:w-2/12
                         rows:
                           - component: TextBox
                             props:
@@ -448,7 +448,7 @@ rows:
                           text: 00169
                   - gap: gap-4
                     cols:
-                      - width: w-fit
+                      - width: md:w-fit
                         component: TextBox
                         props:
                           text: '>'
@@ -456,7 +456,7 @@ rows:
                         nodeClass: bg-blue-500 w-8 h-8
                         posY: middle
                         posX: middle
-                      - width: w-8/12
+                      - width: md:w-8/12
                         component: TextBox
                         props:
                           text: EXTRA INFO
