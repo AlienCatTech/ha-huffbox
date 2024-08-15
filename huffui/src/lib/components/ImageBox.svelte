@@ -38,8 +38,8 @@
 	};
 </script>
 
-<div class="w-full overflow-hidden flex items-center justify-center">
-	<img src={value} {alt} class="h-full w-auto object-cover" on:click={handleClick} />
+<div class="w-full h-full overflow-hidden flex items-center justify-center">
+	<img src={value} {alt} class="max-w-full max-h-full object-contain" on:click={handleClick} />
 	<input
 		type="file"
 		accept="image/*"

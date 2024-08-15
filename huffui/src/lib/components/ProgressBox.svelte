@@ -39,5 +39,5 @@
 {#if currentV !== undefined && maxV !== undefined}
 	<ProgressBar value={currentV} max={maxV} {meter} {track} {height} />
 {:else}
-	<LoadingBox />
+	<ProgressBar value={undefined} {meter} {track} {height} />
 {/if}

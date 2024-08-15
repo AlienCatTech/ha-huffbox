@@ -65,7 +65,6 @@
 		window.addEventListener('resize', () => {
 			chart.setSize({ width: options.height, height: options.height });
 		});
-		chart.setSize({ width: options.height, height: options.height });
 	});
 
 	// Function to update chart with new data point

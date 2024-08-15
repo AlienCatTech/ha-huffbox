@@ -47,5 +47,10 @@ export default {
 				custom: [scifiTheme]
 			}
 		})
+	],
+	safelist: [
+		{
+			pattern: /^(w-|h-|md:|gap-|m-|p-|text-|border|-m-|bg-|tracking-widest|from-|to-)/
+		}
 	]
 } satisfies Config;

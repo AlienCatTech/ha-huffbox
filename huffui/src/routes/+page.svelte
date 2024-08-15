@@ -77,7 +77,7 @@
 
 		window.addEventListener('message', async (event) => {
 			const { msg, data } = event.data;
-			console.log(msg, data);
+			// console.log(msg, data);
 			if (!data) {
 				return;
 			}
@@ -92,7 +92,7 @@
 		});
 		if (dev) {
 			const mock = {
-				'text.huffbox_subject_picture': 'https://placedog.net/500',
+				'text.huffbox_subject_picture': 'https://placedog.net/500/1500',
 				'text.huffbox_subject_name': 'test',
 				'text.huffbox_live_chat': 'live-chat.json',
 				'text.huffbox_custom_layout_link': 'custom.json',
