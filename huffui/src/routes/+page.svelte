@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Flexilte } from '@flexilte/core';
-
+	import YAML from 'yaml';
 	import { stateStore } from '$lib/stores';
 	import type { LayoutConfig } from '@flexilte/core';
 	import { components } from '$lib/default';
@@ -18,7 +18,7 @@
 
 				cols: [
 					{
-						component: 'ImageBoxOG',
+						component: 'ImageBox',
 						props: {
 							url: 'favicon.png'
 						},
@@ -52,6 +52,10 @@
 			if (!response.ok) {
 				throw new Error('Primary API failed');
 			}
+			if (custom.endsWith('.yaml') || custom.endsWith('.yml')) {
+				return YAML.parse(await response.text());
+			}
+
 			return await response.json();
 		} catch (error) {
 			console.error('Failed to load layout');
@@ -100,7 +104,7 @@
 				'sensor.huffbox_resp': '50',
 				'sensor.huffbox_temp': '50',
 				'lock.huffbox_control_lock': 'locked',
-				'light.huffbox_control_light': 'on',
+				'light.huffbox_control_light': 'off',
 				'fan.huffbox_control_fan': 'on',
 				'text.huffbox_banner': 'MEOW',
 				'time.huffbox_time': '12:34:56'

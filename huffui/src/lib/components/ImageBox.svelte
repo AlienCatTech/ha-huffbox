@@ -3,12 +3,19 @@
 	import { stateStore } from '$lib/stores';
 
 	export let state = '';
+	export let url = '';
 	export let alt = '';
-	let url = '';
+	let value = '';
 	let inputRef: HTMLInputElement;
-	stateStore.subscribe((states: Record<string, any>) => {
-		url = states[state];
-	});
+
+	if (state) {
+		stateStore.subscribe((states: Record<string, any>) => {
+			value = states[state];
+		});
+	} else {
+		value = url;
+	}
+
 	const handleClick = () => {
 		inputRef.click();
 	};
@@ -32,11 +39,11 @@
 </script>
 
 <div class="w-full overflow-hidden flex items-center justify-center">
-	<img src={url} {alt} class="h-full w-auto object-cover" on:click={handleClick} />
+	<img src={value} {alt} class="h-full w-auto object-cover" on:click={handleClick} />
 	<input
 		type="file"
 		accept="image/*"
-		class={url ? 'hidden' : ''}
+		class={value ? 'hidden' : ''}
 		bind:this={inputRef}
 		on:change={handleFileChange}
 	/>

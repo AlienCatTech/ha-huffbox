@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	export let type: string = 'text';
 	export let title: string = '';
+	export let light: string = 'ffffff00';
+	export let dark: string = '0d3d56ff';
 	export let data: string;
 
 	let dataUrl = '';
@@ -12,7 +14,7 @@
 			data = `WIFI:T:WPA;S:${parts[0]};P:${parts[1]};;`;
 		}
 
-		QRCode.toDataURL(data, { color: { light: 'ffffff00', dark: '0d3d56ff' } }).then((url) => {
+		QRCode.toDataURL(data, { color: { light, dark } }).then((url) => {
 			dataUrl = url;
 		});
 	});

@@ -1,0 +1,479 @@
+# yaml-language-server: $schema=../src/lib/schema.json
+rows:
+  - gap: gap-4
+    layoutClass: mx-4 mt-4
+    cols:
+      - width: w-3/12
+        gap: gap-4
+        rows:
+          - component: ImageBox
+            props:
+              state: text.huffbox_subject_picture
+          - gap: gap-4
+            cols:
+              - component: TextBox
+                props:
+                  text: +
+                  classList: text-9xl text-white -mt-4
+                nodeClass: bg-blue-500 w-28 h-28
+                posX: middle
+                posY: middle
+                width: w-3/12
+              - rows:
+                  - component: TextBox
+                    props:
+                      text: PATIENT
+                      classList: text-3xl
+                  - component: TextBox
+                    props:
+                      state: text.huffbox_subject_name
+                      classList: text-8xl text-blue-500
+                  - component: TextBox
+                    props:
+                      state: text.huffbox_subject_species
+                      classList: text-blue-500 text-2xl tracking-widest w-full
+                    nodeClass: bg-gradient-to-r from-neutral-400 to-transparent bg-clip-border
+          - cols:
+              - component: TextBox
+                props:
+                  text: TEST_240712.
+                  classList: text-5xl
+              - component: TextBox
+                props:
+                  text: '04'
+                  classList: text-5xl text-orange-400
+          - nodeClass: border-y border-black border-y-4
+            cols:
+              - alignHeight: true
+                rows:
+                  - component: TextBox
+                    props:
+                      text: TEST
+                      classList: text-blue-500 text-4xl
+                    nodeClass: h-full
+                    posX: right
+                    posY: bottom
+                  - component: TextBox
+                    props:
+                      text: TYPE
+                      classList: text-blue-500 text-4xl
+                    posX: right
+              - component: TextFX
+                props:
+                  text: NG
+                  textTop: OS
+                  textBottom: HP
+                nodeClass: h-72 mx-4
+                posY: middle
+                posX: left
+      - width: w-9/12
+        rows:
+          - gap: gap-4
+            cols:
+              - gap: gap-4
+                width: w-5/12
+                rows:
+                  - component: TextBox
+                    props:
+                      text: ACO - DATA
+                      classList: text-5xl
+                  - gap: gap-2
+                    cols:
+                      - component: TextBox
+                        width: w-1/12
+                        props:
+                          text: ⏺︎
+                          classList: text-3xl
+                      - component: TextBox
+                        width: w-2/12
+                        props:
+                          text: 27.M
+                          classList: text-4xl text-blue-500 p-2
+                        nodeClass: bg-neutral-400 h-full
+                        posY: middle
+                        posX: middle
+                      - gap: gap-4
+                        rows:
+                          - nodeClass: border-y border-y-4 border-neutral-400 py-2
+                            cols:
+                              - rows:
+                                  - component: TextBox
+                                    props:
+                                      text: SPECIES
+                                      classList: text-5xl
+                                    posX: middle
+                                  - component: TextBox
+                                    props:
+                                      text: DATA SIGNATURE
+                                      classList: bg-blue-500 text-center
+                              - nodeClass: mx-2 h-full
+                                rows:
+                                  - component: TextBox
+                                    props:
+                                      state: text.huffbox_subject_species
+                                      classList: text-blue-500 text-3xl
+                                  - component: TextBox
+                                    props:
+                                      text: 821 T0 5 RK
+                                      classList: font-['Barcode'] text-2xl text-neutral-500
+                                posY: middle
+              - width: w-7/12
+                rows:
+                  - cols:
+                      - width: w-5/6
+                        rows:
+                          - nodeClass: border-b border-b-4 border-black pr-2
+                            cols:
+                              - component: TextBox
+                                props:
+                                  text: A.50
+                                  classList: text-2xl text-white
+                                nodeClass: bg-blue-500
+                                posX: middle
+                              - component: TextBox
+                                props:
+                                  text: A.52
+                                  classList: text-2xl
+                                nodeClass: bg-neutral-400
+                                posX: middle
+                              - component: TextBox
+                                props:
+                                  text: A.53
+                                  classList: text-2xl
+                                nodeClass: bg-neutral-400
+                                posX: middle
+                          - component: TextBox
+                            props:
+                              text: 🞁
+                              classList: text-3xl text-blue-500 text-center w-48
+                          - cols:
+                              - component: CircleFX
+                              - component: CircleFX
+                              - component: CircleFX
+                              - component: CircleFX
+                              - component: CircleFX
+                      - width: w-1/6
+                        component: IconBox
+                        props:
+                          type: file
+                          classList: text-9xl text-orange-400
+                        nodeClass: h-full
+                        posY: middle
+          - gap: gap-4
+            cols:
+              - gap: gap-4
+                rows:
+                  - component: ClockBox
+                    props:
+                      state: sensor.huffbox_second_passed
+                      classList: font-['Orbitron'] md:text-8xl text-6xl
+                      type: second
+                    posX: middle
+                    nodeClass: my-6
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: PROTOCOL
+                          classList: text-5xl text-blue-500
+                      - component: TextBox
+                        props:
+                          text: NOGASM.SH
+                          classList: text-5xl
+                  - cols:
+                      - width: w-11/12
+                        component: TextBox
+                        props:
+                          text: ENABLED
+                          classList: text-3xl text-white p-2
+                        nodeClass: bg-black
+                      - width: w-1/12
+                        component: TextBox
+                        props:
+                          text: ⏺︎
+                          classList: text-4xl text-center text-blue-500
+                        nodeClass: h-full
+                        posY: middle
+                        posX: middle
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: VERSION
+                          classList: text-2xl ml-4
+                      - component: TextBox
+                        props:
+                          text: 3.12
+                          classList: text-2xl text-right text-blue-500
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: BUILD TYPE
+                          classList: text-2xl ml-4
+                      - component: TextBox
+                        props:
+                          text: ALPHA
+                          classList: text-2xl text-right text-blue-500
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: BUILD DATE
+                          classList: text-2xl ml-4
+                      - component: TextBox
+                        props:
+                          text: 24.06.21
+                          classList: text-2xl text-right text-blue-500
+                  - nodeClass: bg-neutral-400
+                    cols:
+                      - width: w-1/12
+                        component: TextBox
+                        props:
+                          text: ✖
+                          classList: text-white text-4xl
+                        nodeClass: bg-blue-500 w-12 h-12
+                        posX: middle
+                        posY: middle
+                      - component: TextBox
+                        props:
+                          text: CONFIGS
+                          classList: text-blue-500 text-3xl
+                        nodeClass: bg-neutral-400 pl-4 h-full
+                        posY: middle
+                  - gap: gap-2
+                    cols:
+                      - nodeClass: border-b border-b-3 border-neutral-400
+                        rows:
+                          - component: SimpleSwitch
+                            props:
+                              state: lock.huffbox_control_lock
+                              height: h-6
+                              onClass: bg-orange-400
+                              offClass: bg-neutral-400
+                          - component: TextBox
+                            props:
+                              text: LOCK
+                              classList: text-2xl
+                            posX: middle
+                      - nodeClass: border-b border-b-3 border-neutral-400
+                        rows:
+                          - component: SimpleSwitch
+                            props:
+                              state: light.huffbox_control_light
+                              height: h-6
+                              onClass: bg-orange-400
+                              offClass: bg-neutral-400
+                          - component: TextBox
+                            props:
+                              text: LIGHT
+                              classList: text-2xl
+                            posX: middle
+                      - nodeClass: border-b border-b-3 border-neutral-400
+                        rows:
+                          - component: SimpleSwitch
+                            props:
+                              state: fan.huffbox_control_fan
+                              height: h-6
+                              onClass: bg-orange-400
+                              offClass: bg-neutral-400
+                          - component: TextBox
+                            props:
+                              text: FAN
+                              classList: text-2xl
+                            posX: middle
+                  - component: ECGBox
+                    props:
+                      state: sensor.huffbox_heart_rate
+                      stroke: rgb(251 146 60)
+                    nodeClass: h-32 shadow-glow border-b border-b-3 border-black border-dashed
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: SENSITIVITY
+                          classList: text-2xl
+                      - component: TextBox
+                        props:
+                          state: sensor.nogasm_pressure
+                          classList: text-blue-500 text-right
+                  - component: ProgressBox
+                    props:
+                      currentState: sensor.nogasm_pressure
+                      avgState: sensor.nogasm_average_pressure
+                      meter: bg-orange-400
+                      track: bg-neutral-400
+                      height: h-3
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: MOTOR SPEED
+                          classList: text-2xl
+                      - component: TextBox
+                        props:
+                          state: sensor.nogasm_motor_speed
+                          classList: text-blue-500 text-right
+                  - component: ProgressBox
+                    props:
+                      currentState: sensor.nogasm_motor_speed
+                      max: 180
+                      meter: bg-orange-400
+                      track: bg-neutral-400
+                      height: h-3
+              - gap: gap-4
+                rows:
+                  - component: FancyBannerBox
+                    props:
+                      state: text.huffbox_banner
+                    nodeClass: h-32 mt-4 w-[42rem]
+                  - component: TextBox
+                    props:
+                      text: 'FILE DESCRIPTION: A SET OF OPEN-SOURCE PROJECTS AND DEVICES AIMED AT DETECTING AND PREDICTING ORGASMS USING HARDWARE AND SOFTWARE BASED ON ARDUINO TECHOLOGY. THE PRIMARY GOAL IS TO CREATE TOOLS THAT CAN MEASURE AROUSAL LEVELS AND PREDICT OR DETECT ORGASMS THROUGH VARIOUS PHYSIOLOGICAL INDICATORS'
+                      classList: text-xs my-4
+                  - gap: gap-4
+                    cols:
+                      - width: w-fit
+                        component: TextBox
+                        props:
+                          text: '>'
+                          classList: text-2xl text-white
+                        nodeClass: bg-blue-500 w-8 h-8
+                        posY: middle
+                        posX: middle
+                      - width: w-8/12
+                        component: TextBox
+                        props:
+                          text: GENERAL MONITOR
+                          classList: text-blue-500 text-3xl
+                        posY: middle
+                      - width: w-2/12
+                        rows:
+                          - component: TextBox
+                            props:
+                              text: CONTROL T2
+                              classList: text-white text-sm
+                            nodeClass: bg-blue-500
+                          - component: TextBox
+                            props:
+                              text: PATIENT DATA AND HEALTH
+                              classList: text-xs
+                  - cols:
+                      - gap: gap-4
+                        rows:
+                          - gap: gap-4
+                            cols:
+                              - component: TextBox
+                                props:
+                                  text: HEART RATE
+                                  classList: text-2xl
+                              - component: TextBox
+                                props:
+                                  state: sensor.huffbox_heart_rate
+                                  classList: text-8xl text-bold
+                              - rows:
+                                  - component: IconBox
+                                    props:
+                                      type: heart
+                                      classList: text-3xl text-white p-1 bg-orange-400
+                                  - component: TextBox
+                                    props:
+                                      text: BPM
+                                      classList: text-blue-500
+                          - gap: gap-4
+                            cols:
+                              - component: TextBox
+                                props:
+                                  text: SpO2
+                                  classList: text-2xl
+                              - component: TextBox
+                                props:
+                                  state: sensor.huffbox_spo2
+                                  classList: text-8xl text-bold
+                              - rows:
+                                  - component: IconBox
+                                    props:
+                                      type: oxygenTank
+                                      classList: text-3xl text-white p-1 bg-orange-400
+                                  - component: TextBox
+                                    props:
+                                      text: '%'
+                                      classList: text-blue-500
+                      - gap: gap-4
+                        rows:
+                          - gap: gap-4
+                            cols:
+                              - component: TextBox
+                                props:
+                                  text: RESP RATE
+                                  classList: text-2xl
+                              - component: TextBox
+                                props:
+                                  state: sensor.huffbox_resp
+                                  classList: text-8xl text-bold
+                              - rows:
+                                  - component: IconBox
+                                    props:
+                                      type: lungs
+                                      classList: text-3xl text-white p-1 bg-orange-400
+                                  - component: TextBox
+                                    props:
+                                      text: '/MIN'
+                                      classList: text-blue-500
+                          - gap: gap-4
+                            cols:
+                              - component: TextBox
+                                props:
+                                  text: TEMP
+                                  classList: text-2xl
+                              - component: TextBox
+                                props:
+                                  state: sensor.huffbox_temp
+                                  classList: text-8xl text-bold
+                              - rows:
+                                  - component: IconBox
+                                    props:
+                                      type: thermostat
+                                      classList: text-3xl text-white p-1 bg-orange-400
+                                  - component: TextBox
+                                    props:
+                                      text: F
+                                      classList: text-blue-500
+                  - cols:
+                      - component: TextBox
+                        props:
+                          text: 42
+                      - component: TextBox
+                        props:
+                          text: 29
+                      - component: TextBox
+                        props:
+                          text: B1
+                      - component: TextBox
+                        props:
+                          text: 00169
+                  - gap: gap-4
+                    cols:
+                      - width: w-fit
+                        component: TextBox
+                        props:
+                          text: '>'
+                          classList: text-2xl text-white
+                        nodeClass: bg-blue-500 w-8 h-8
+                        posY: middle
+                        posX: middle
+                      - width: w-8/12
+                        component: TextBox
+                        props:
+                          text: EXTRA INFO
+                          classList: text-blue-500 text-3xl
+                        posY: middle
+                  - cols:
+                      - component: QRBox
+                        props:
+                          title: HuffBox Website
+                          data: https://huffbox.aliencat.dev/
+                          dark: '000000'
+                        posY: middle
+                        posX: middle
+                      - component: QRBox
+                        props:
+                          title: Xitter
+                          data: https://twitter.com/flerken_cat/
+                          dark: '000000'
+                        posY: middle
+                        posX: middle

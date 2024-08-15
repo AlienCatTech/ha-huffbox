@@ -4,6 +4,7 @@
 	import uPlot from 'uplot';
 
 	export let state: string;
+	export let stroke: string = 'red';
 
 	let chart: uPlot;
 	let data: [number[], number[]] = [[Date.now() / 1000], [70]];
@@ -18,7 +19,7 @@
 		series: [
 			{},
 			{
-				stroke: 'red',
+				stroke,
 				width: 5,
 				points: {
 					show: false

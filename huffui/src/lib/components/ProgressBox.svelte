@@ -3,10 +3,13 @@
 	import { stateStore } from '$lib/stores';
 	import { ProgressBar } from '@skeletonlabs/skeleton';
 
-	export let title: string = '';
 	export let currentState: string;
 	export let avgState: string;
 	export let max: number;
+	export let meter: string | undefined = undefined;
+	export let track: string | undefined = undefined;
+	export let height: string | undefined = undefined;
+
 	let currentV: number;
 	let maxV: number = 100;
 	function constrain(value: number, min: number, max: number): number {
@@ -33,9 +36,8 @@
 	});
 </script>
 
-<div class="h1 mr-12">{title}</div>
 {#if currentV !== undefined && maxV !== undefined}
-	<ProgressBar value={currentV} max={maxV} />
+	<ProgressBar value={currentV} max={maxV} {meter} {track} {height} />
 {:else}
 	<LoadingBox />
 {/if}

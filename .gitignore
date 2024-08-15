@@ -20,4 +20,6 @@ media/*
 config/*
 !config/configuration.yaml
 !config/www/.keep
-huffui/static/custom.json
+huffui/static/custom*.json
+huffui/static/custom*.yaml
+huffui/static/custom*.yml
