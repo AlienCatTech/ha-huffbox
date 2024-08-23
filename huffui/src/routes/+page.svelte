@@ -73,6 +73,21 @@
 		}
 		return result;
 	}
+
+	const handleEvent = async (payload: Record<string, any>) => {
+		const newLayout = payload['select.huffbox_select_dashboard'];
+
+		if (Object.keys(layoutConfig).length === 0 || newLayout !== currentLayout) {
+			layoutConfig = await loadConfig(newLayout, payload['text.huffbox_custom_layout_link']);
+			fancyLogging('init', payload);
+		}
+
+		if (payload['light.huffbox_huffui_lightmode'])
+			setModeCurrent(payload['light.huffbox_huffui_lightmode'] === 'on');
+
+		stateStore.set(payload);
+	};
+
 	onMount(async () => {
 		setModeCurrent(true);
 
@@ -83,17 +98,11 @@
 				return;
 			}
 			const payload = transformDict(data);
-			const newLayout = payload['select.huffbox_select_dashboard'];
-
-			if (Object.keys(layoutConfig).length === 0 || newLayout !== currentLayout) {
-				layoutConfig = await loadConfig(newLayout, payload['text.huffbox_custom_layout_link']);
-				fancyLogging('init', data);
-			}
-
-			stateStore.set(payload);
+			handleEvent(payload);
 		});
 		if (dev) {
 			const mock = {
+				'select.huffbox_select_dashboard': 'default',
 				'text.huffbox_subject_picture': 'https://placedog.net/500/1500',
 				'text.huffbox_subject_name': 'test',
 				'text.huffbox_live_chat': 'live-chat.json',
@@ -108,10 +117,10 @@
 				'light.huffbox_control_light': 'off',
 				'fan.huffbox_control_fan': 'on',
 				'text.huffbox_banner': 'MEOW',
-				'time.huffbox_time': '12:34:56'
+				'time.huffbox_time': '12:34:56',
+				'light.huffbox_huffui_lightmode': 'on'
 			};
-			stateStore.set(mock);
-			layoutConfig = await loadConfig('default');
+			await handleEvent(mock);
 		}
 	});
 </script>

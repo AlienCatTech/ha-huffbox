@@ -83,7 +83,7 @@ class HuffUILightTheme(HuffBoxBaseEntity, LightEntity):
     _attr_supported_color_modes: ClassVar[set[ColorMode]] = {ColorMode.ONOFF}
 
     def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
-        super().__init__(config_entry, "control_light")
+        super().__init__(config_entry, "huffui_lightmode")
         self.isLightTheme = True
 
     @property
