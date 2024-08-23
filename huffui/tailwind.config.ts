@@ -4,6 +4,7 @@ import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 import { scifiTheme } from './src/theme';
+import tailwindClasses from './scripts/safeList';
 
 export default {
 	darkMode: 'class',
@@ -13,8 +14,14 @@ export default {
 		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
 	],
 	theme: {
+		screens: {
+			sm: '640px',
+			md: '1920px',
+			lg: '2560px'
+		},
 		extend: {
 			height: {
+				'120': '28rem',
 				'128': '32rem',
 				'160': '40rem',
 				'192': '48rem',
@@ -48,9 +55,5 @@ export default {
 			}
 		})
 	],
-	safelist: [
-		{
-			pattern: /^(w-|h-|md:|gap-|m-|p-|text-|border|-m-|bg-|tracking-widest|from-|to-)/
-		}
-	]
+	safelist: [...tailwindClasses]
 } satisfies Config;

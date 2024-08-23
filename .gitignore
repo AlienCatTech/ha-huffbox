@@ -23,3 +23,6 @@ config/*
 huffui/static/custom*.json
 huffui/static/custom*.yaml
 huffui/static/custom*.yml
+custom_components/huffbox/huffui/custom*.json
+custom_components/huffbox/huffui/custom*.yaml
+custom_components/huffbox/huffui/custom*.yml

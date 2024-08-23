@@ -9,6 +9,7 @@
 	import { fancyLogging } from '$lib/common';
 	import { dev } from '$app/environment';
 	import { fade } from 'svelte/transition';
+
 	const loadingLayout: LayoutConfig<typeof components> = {
 		rows: [
 			{
@@ -36,7 +37,7 @@
 
 	async function loadConfig(
 		option: string,
-		custom: string
+		custom: string = ''
 	): Promise<LayoutConfig<typeof components>> {
 		try {
 			const urlDict: Record<string, string> = {
@@ -58,7 +59,7 @@
 
 			return await response.json();
 		} catch (error) {
-			console.error('Failed to load layout');
+			console.error('Failed to load layout', error);
 			return {};
 		}
 	}
@@ -88,6 +89,7 @@
 				layoutConfig = await loadConfig(newLayout, payload['text.huffbox_custom_layout_link']);
 				fancyLogging('init', data);
 			}
+
 			stateStore.set(payload);
 		});
 		if (dev) {
@@ -95,7 +97,6 @@
 				'text.huffbox_subject_picture': 'https://placedog.net/500/1500',
 				'text.huffbox_subject_name': 'test',
 				'text.huffbox_live_chat': 'live-chat.json',
-				'text.huffbox_custom_layout_link': 'custom.json',
 				'text.huffbox_video_link':
 					'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4',
 				'sensor.huffbox_heart_rate': '50',
@@ -110,7 +111,7 @@
 				'time.huffbox_time': '12:34:56'
 			};
 			stateStore.set(mock);
-			layoutConfig = await loadConfig('default', mock['text.huffbox_custom_layout_link']);
+			layoutConfig = await loadConfig('default');
 		}
 	});
 </script>

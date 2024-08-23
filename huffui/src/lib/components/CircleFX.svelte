@@ -5,6 +5,8 @@
 	let direction = 1;
 	let value: number | undefined = undefined;
 	let random = '0.00';
+	export let width = 'w-16';
+
 	onMount(() => {
 		direction = Math.random() > 0.5 ? 1 : -1;
 		const delay = Math.random() * 10000;
@@ -23,7 +25,7 @@
 </script>
 
 <div class="relative flex items-center justify-center">
-	<ProgressRadial {value} width="w-16" meter="stroke-orange-400" track="stroke-orange-400/30"
+	<ProgressRadial {value} {width} meter="stroke-orange-400" track="stroke-orange-400/30"
 	></ProgressRadial>
 	<span
 		class="absolute rotate text-3xl font-bold text-orange-400 text-center"

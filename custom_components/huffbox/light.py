@@ -8,6 +8,7 @@ from homeassistant.components.light import (
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from numpy import True_
 
 from .data import HuffBoxConfigEntry
 from .entity import HuffBoxBaseEntity
@@ -18,7 +19,10 @@ async def async_setup_entry(
     entry: HuffBoxConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    async_add_entities([HuffBoxLight(entry), HuffBoxLED(entry)], update_before_add=True)
+    async_add_entities(
+        [HuffBoxLight(entry), HuffBoxLED(entry), HuffUILightTheme(entry)],
+        update_before_add=True,
+    )
 
 
 class HuffBoxLight(HuffBoxBaseEntity, LightEntity):
@@ -72,3 +76,30 @@ class HuffBoxLED(HuffBoxBaseEntity, LightEntity):
 
     async def async_turn_off(self) -> None:
         self.huffbox.led.turn_off()
+
+
+class HuffUILightTheme(HuffBoxBaseEntity, LightEntity):
+    _attr_color_mode = ColorMode.ONOFF
+    _attr_supported_color_modes: ClassVar[set[ColorMode]] = {ColorMode.ONOFF}
+
+    def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
+        super().__init__(config_entry, "control_light")
+        self.isLightTheme = True
+
+    @property
+    def color_mode(self) -> ColorMode | str | None:
+        return self._attr_color_mode
+
+    @property
+    def supported_color_modes(self) -> set[ColorMode] | set[str] | None:
+        return self._attr_supported_color_modes
+
+    @property
+    def is_on(self) -> bool:
+        return self.isLightTheme
+
+    async def async_turn_on(self) -> None:
+        self.isLightTheme = True
+
+    async def async_turn_off(self) -> None:
+        self.isLightTheme = False

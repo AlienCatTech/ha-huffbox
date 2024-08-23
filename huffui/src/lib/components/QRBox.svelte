@@ -1,22 +1,32 @@
 <script lang="ts">
+	import { modeCurrent } from '@skeletonlabs/skeleton';
 	import QRCode from 'qrcode';
 	import { onMount } from 'svelte';
 	export let type: string = 'text';
 	export let title: string = '';
-	export let light: string = 'ffffff00';
+	export let light: string = 'ffffffff';
 	export let dark: string = '0d3d56ff';
 	export let data: string;
 
+	const transparent = '00000000';
+
 	let dataUrl = '';
-	onMount(() => {
+	onMount(async () => {
 		if (type === 'wifi') {
 			const parts = data.split('||');
 			data = `WIFI:T:WPA;S:${parts[0]};P:${parts[1]};;`;
 		}
 
-		QRCode.toDataURL(data, { color: { light, dark } }).then((url) => {
-			dataUrl = url;
-		});
+		await adaptColor($modeCurrent);
+	});
+
+	const adaptColor = async (isLight: boolean) => {
+		const colorOpt = isLight ? { light: transparent, dark } : { light: transparent, dark: light };
+		dataUrl = await QRCode.toDataURL(data, { color: colorOpt });
+	};
+
+	modeCurrent.subscribe(async (isLight) => {
+		await adaptColor(isLight);
 	});
 </script>
 
