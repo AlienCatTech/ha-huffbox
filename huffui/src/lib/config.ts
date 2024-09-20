@@ -11,7 +11,7 @@ export async function loadConfig(): Promise<LayoutConfig<typeof components>> {
 	} catch (error) {
 		console.warn('Failed to load from primary API, trying backup...');
 		try {
-			const backupResponse = await fetch('default-layout.json');
+			const backupResponse = await fetch('default.json');
 			if (!backupResponse.ok) {
 				throw new Error('Backup API failed');
 			}

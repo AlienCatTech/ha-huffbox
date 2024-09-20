@@ -13,10 +13,7 @@
 
 <div class="animated-stripes flex justify-center items-center scrolling-text-container">
 	{#each warningScroll() as e}
-		<div
-			class="text-black font-bold text-6xl scrolling-text pr-5 top-1/2"
-			style="background-color: #ffeb3b;"
-		>
+		<div class="text-black font-bold text-6xl scrolling-text pr-5 top-1/2">
 			{e}
 		</div>
 	{/each}
@@ -28,12 +25,12 @@
 		background-image: linear-gradient(
 			45deg,
 			#000 25%,
-			#ffeb3b 25%,
-			#ffeb3b 50%,
+			theme('colors.yellow.500') 25%,
+			theme('colors.yellow.500') 50%,
 			#000 50%,
 			#000 75%,
-			#ffeb3b 75%,
-			#ffeb3b 100%
+			theme('colors.yellow.500') 75%,
+			theme('colors.yellow.500') 100%
 		);
 		background-size: 56.57px 56.57px; /* 40px * sqrt(2) to account for the 45 degree angle */
 		animation: move-stripes 2s linear infinite;
@@ -54,6 +51,7 @@
 
 	.scrolling-text {
 		animation: scroll-text 5s linear infinite;
+		background: theme('colors.yellow.500');
 		/* display: inline-block; */
 		/* margin-left: 100%;  */
 	}

@@ -1,1 +1,2 @@
 su - dietpi -c "DISPLAY=:0 xdotool key F5"
+sh /var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh

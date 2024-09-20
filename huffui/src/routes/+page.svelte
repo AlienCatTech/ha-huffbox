@@ -41,7 +41,7 @@
 	): Promise<LayoutConfig<typeof components>> {
 		try {
 			const urlDict: Record<string, string> = {
-				default: 'default-layout.json',
+				default: 'default.json',
 				'fullscreen-image': 'fullscreen-image.json',
 				'fullscreen-text': 'fullscreen-text.json',
 				'fullscreen-video': 'fullscreen-video.json',
