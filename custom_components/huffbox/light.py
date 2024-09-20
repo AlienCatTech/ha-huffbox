@@ -8,7 +8,6 @@ from homeassistant.components.light import (
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from numpy import True_
 
 from .data import HuffBoxConfigEntry
 from .entity import HuffBoxBaseEntity
