@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
 	import { stateStore } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import uPlot from 'uplot';
@@ -65,6 +66,12 @@
 		window.addEventListener('resize', () => {
 			chart.setSize({ width: options.height, height: options.height });
 		});
+
+		if (dev) {
+			Array.from({ length: 50 }, (_, i) => i + 1).forEach((value) => {
+				addDataPoint(Date.now() / 1000, value % 2 ? 50 : 75);
+			});
+		}
 	});
 
 	// Function to update chart with new data point

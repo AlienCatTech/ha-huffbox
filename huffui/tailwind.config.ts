@@ -14,11 +14,11 @@ export default {
 		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
 	],
 	theme: {
-		screens: {
-			sm: '640px',
-			md: '1920px',
-			lg: '2560px'
-		},
+		// screens: {
+		// 	sm: '640px',
+		// 	md: '1920px',
+		// 	lg: '2560px'
+		// },
 		extend: {
 			height: {
 				'120': '28rem',

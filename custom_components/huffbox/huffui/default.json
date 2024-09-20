@@ -51,7 +51,7 @@
 												"state": "text.huffbox_subject_species",
 												"classList": "text-blue-600 text-2xl tracking-widest w-full"
 											},
-											"nodeClass": "bg-gradient-to-r from-neutral-400 to-transparent bg-clip-border"
+											"nodeClass": "bg-gradient-to-r from-neutral-500 to-transparent bg-clip-border"
 										}
 									]
 								}
@@ -148,10 +148,10 @@
 													"component": "TextBox",
 													"width": "md:w-2/12",
 													"props": {
-														"text": "27.M",
-														"classList": "text-4xl text-blue-600 p-2"
+														"text": "A",
+														"classList": "text-4xl text-white p-2"
 													},
-													"nodeClass": "bg-neutral-400 h-full",
+													"nodeClass": "bg-neutral-500 h-full",
 													"posY": "middle",
 													"posX": "middle"
 												},
@@ -159,7 +159,7 @@
 													"gap": "gap-4",
 													"rows": [
 														{
-															"nodeClass": "border-y border-y-4 border-neutral-400 py-2",
+															"nodeClass": "border-y border-y-4 border-neutral-500 py-2",
 															"cols": [
 																{
 																	"rows": [
@@ -194,7 +194,7 @@
 																			"component": "TextBox",
 																			"props": {
 																				"text": "821 T0 5 RK",
-																				"classList": "font-['Barcode'] text-2xl text-neutral-500"
+																				"classList": "font-['Barcode'] text-3xl text-center"
 																			}
 																		}
 																	],
@@ -232,18 +232,18 @@
 																	"component": "TextBox",
 																	"props": {
 																		"text": "A.52",
-																		"classList": "text-2xl"
+																		"classList": "text-2xl text-white"
 																	},
-																	"nodeClass": "bg-neutral-400",
+																	"nodeClass": "bg-neutral-500",
 																	"posX": "middle"
 																},
 																{
 																	"component": "TextBox",
 																	"props": {
 																		"text": "A.53",
-																		"classList": "text-2xl"
+																		"classList": "text-2xl text-white"
 																	},
-																	"nodeClass": "bg-neutral-400",
+																	"nodeClass": "bg-neutral-500",
 																	"posX": "middle"
 																}
 															]
@@ -405,7 +405,7 @@
 											]
 										},
 										{
-											"nodeClass": "bg-neutral-400",
+											"nodeClass": "bg-neutral-500",
 											"cols": [
 												{
 													"width": "md:w-1/12",
@@ -422,9 +422,9 @@
 													"component": "TextBox",
 													"props": {
 														"text": "CONFIGS",
-														"classList": "text-blue-600 text-3xl"
+														"classList": "text-white text-3xl"
 													},
-													"nodeClass": "bg-neutral-400 pl-4 h-full",
+													"nodeClass": "bg-neutral-500 pl-4 h-full",
 													"posY": "middle"
 												}
 											]
@@ -433,7 +433,7 @@
 											"gap": "gap-2",
 											"cols": [
 												{
-													"nodeClass": "border-b border-b-3 border-neutral-400",
+													"nodeClass": "border-b border-b-3 border-neutral-500",
 													"rows": [
 														{
 															"component": "SimpleSwitch",
@@ -441,7 +441,7 @@
 																"state": "lock.huffbox_control_lock",
 																"height": "h-6",
 																"onClass": "bg-orange-600",
-																"offClass": "bg-neutral-400"
+																"offClass": "bg-neutral-500"
 															}
 														},
 														{
@@ -455,7 +455,7 @@
 													]
 												},
 												{
-													"nodeClass": "border-b border-b-3 border-neutral-400",
+													"nodeClass": "border-b border-b-3 border-neutral-500",
 													"rows": [
 														{
 															"component": "SimpleSwitch",
@@ -463,7 +463,7 @@
 																"state": "light.huffbox_control_light",
 																"height": "h-6",
 																"onClass": "bg-orange-600",
-																"offClass": "bg-neutral-400"
+																"offClass": "bg-neutral-500"
 															}
 														},
 														{
@@ -477,7 +477,7 @@
 													]
 												},
 												{
-													"nodeClass": "border-b border-b-3 border-neutral-400",
+													"nodeClass": "border-b border-b-3 border-neutral-500",
 													"rows": [
 														{
 															"component": "SimpleSwitch",
@@ -485,7 +485,7 @@
 																"state": "fan.huffbox_control_fan",
 																"height": "h-6",
 																"onClass": "bg-orange-600",
-																"offClass": "bg-neutral-400"
+																"offClass": "bg-neutral-500"
 															}
 														},
 														{
@@ -506,7 +506,7 @@
 												"state": "sensor.huffbox_heart_rate",
 												"stroke": "rgb(251 146 60)"
 											},
-											"nodeClass": "h-32 shadow-glow border-b border-b-3 border-black border-dashed"
+											"nodeClass": "h-32 border-b border-b-3 border-black border-dashed"
 										},
 										{
 											"cols": [
@@ -532,7 +532,7 @@
 												"currentState": "sensor.nogasm_pressure",
 												"avgState": "sensor.nogasm_average_pressure",
 												"meter": "bg-orange-600",
-												"track": "bg-neutral-400",
+												"track": "bg-neutral-500",
 												"height": "h-3"
 											}
 										},
@@ -560,7 +560,7 @@
 												"currentState": "sensor.nogasm_motor_speed",
 												"max": 134,
 												"meter": "bg-orange-600",
-												"track": "bg-neutral-400",
+												"track": "bg-neutral-500",
 												"height": "h-3"
 											}
 										}
