@@ -42,7 +42,7 @@
 											"component": "TextBox",
 											"props": {
 												"state": "text.huffbox_subject_name",
-												"classList": "text-8xl text-blue-600"
+												"classList": "text-7xl text-blue-600"
 											}
 										},
 										{
