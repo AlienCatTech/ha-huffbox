@@ -504,7 +504,7 @@
 											"component": "ECGBox",
 											"props": {
 												"state": "sensor.huffbox_heart_rate",
-												"stroke": "rgb(251 146 60)"
+												"stroke": "rgb(234 88 12)"
 											},
 											"nodeClass": "h-32 border-b border-b-3 border-black border-dashed"
 										},
