@@ -103,11 +103,10 @@
 		if (dev) {
 			const mock = {
 				'select.huffbox_select_dashboard': 'default',
-				'text.huffbox_subject_picture': 'https://placedog.net/500/1500',
+				'text.huffbox_subject_picture': 'default-avatar.png',
 				'text.huffbox_subject_name': 'test',
 				'text.huffbox_live_chat': 'live-chat.json',
-				'text.huffbox_video_link':
-					'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4',
+				'text.huffbox_video_link': 'hypno.mp4',
 				'sensor.huffbox_heart_rate': '50',
 				'sensor.huffbox_pulse': '50',
 				'sensor.huffbox_spo2': '50',

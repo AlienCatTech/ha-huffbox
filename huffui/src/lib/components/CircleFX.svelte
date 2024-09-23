@@ -6,6 +6,10 @@
 	let value: number | undefined = undefined;
 	let random = '0.00';
 	export let width = 'w-16';
+	export let meter = 'stroke-orange-400';
+	export let track = 'stroke-orange-400/30';
+	export let squareClass = 'text-orange-400';
+	export let textClass = 'text-blue-500';
 
 	onMount(() => {
 		direction = Math.random() > 0.5 ? 1 : -1;
@@ -25,14 +29,13 @@
 </script>
 
 <div class="relative flex items-center justify-center">
-	<ProgressRadial {value} {width} meter="stroke-orange-400" track="stroke-orange-400/30"
-	></ProgressRadial>
+	<ProgressRadial {value} {width} {meter} {track}></ProgressRadial>
 	<span
-		class="absolute rotate text-3xl font-bold text-orange-400 text-center"
+		class={`absolute rotate text-3xl font-bold text-center ${squareClass}`}
 		class:reverse={direction === -1}>◆</span
 	>
 </div>
-<div class="text-center text-blue-500">{random}</div>
+<div class={`text-center ${textClass}`}>{random}</div>
 
 <style>
 	@keyframes rotate {

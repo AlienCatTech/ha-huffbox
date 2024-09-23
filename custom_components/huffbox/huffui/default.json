@@ -258,19 +258,49 @@
 														{
 															"cols": [
 																{
-																	"component": "CircleFX"
+																	"component": "CircleFX",
+																	"props": {
+																		"meter": "stroke-orange-600",
+																		"track": "stroke-orange-600/30",
+																		"squareClass": "text-orange-600",
+																		"textClass": "text-blue-600"
+																	}
 																},
 																{
-																	"component": "CircleFX"
+																	"component": "CircleFX",
+																	"props": {
+																		"meter": "stroke-orange-600",
+																		"track": "stroke-orange-600/30",
+																		"squareClass": "text-orange-600",
+																		"textClass": "text-blue-600"
+																	}
 																},
 																{
-																	"component": "CircleFX"
+																	"component": "CircleFX",
+																	"props": {
+																		"meter": "stroke-orange-600",
+																		"track": "stroke-orange-600/30",
+																		"squareClass": "text-orange-600",
+																		"textClass": "text-blue-600"
+																	}
 																},
 																{
-																	"component": "CircleFX"
+																	"component": "CircleFX",
+																	"props": {
+																		"meter": "stroke-orange-600",
+																		"track": "stroke-orange-600/30",
+																		"squareClass": "text-orange-600",
+																		"textClass": "text-blue-600"
+																	}
 																},
 																{
-																	"component": "CircleFX"
+																	"component": "CircleFX",
+																	"props": {
+																		"meter": "stroke-orange-600",
+																		"track": "stroke-orange-600/30",
+																		"squareClass": "text-orange-600",
+																		"textClass": "text-blue-600"
+																	}
 																}
 															]
 														}
