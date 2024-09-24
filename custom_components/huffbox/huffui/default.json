@@ -251,8 +251,8 @@
 														{
 															"component": "TextBox",
 															"props": {
-																"text": "🞁",
-																"classList": "text-3xl text-blue-600 text-center w-48"
+																"text": "^",
+																"classList": "text-3xl text-blue-600 text-center w-48 text-bold"
 															}
 														},
 														{
