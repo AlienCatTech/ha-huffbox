@@ -889,9 +889,9 @@
 												{
 													"component": "QRBox",
 													"props": {
-														"title": "Xitter",
-														"subtitle": "flerken_cat",
-														"data": "https://twitter.com/flerken_cat/",
+														"title": "TG Channel",
+														"subtitle": "t.me/huffbox",
+														"data": "https://t.me/huffbox/",
 														"dark": "000000"
 													},
 													"posY": "middle",

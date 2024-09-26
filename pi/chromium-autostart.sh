@@ -24,5 +24,17 @@ FP_CHROMIUM=$(command -v chromium-browser)
 STARTX='xinit'
 [ "$USER" = 'root' ] || STARTX='startx'
 
-sleep 10
+check_url() {
+    if curl -s -o /dev/null -w "%{http_code}" http://localhost:8123/huffbox-dashboard | grep -q "200"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Loop until we get a 200 status code
+while ! check_url; do
+    sleep 5
+done
+
 exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}"
