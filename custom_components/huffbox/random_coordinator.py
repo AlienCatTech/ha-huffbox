@@ -25,7 +25,7 @@ class RandomNumberCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self) -> dict[str, int]:
         """Fetch data from API endpoint."""
-        self.huffbox.update_led()
+        await self.huffbox.update_led()
         return {
             "second_passed": self.huffbox.update_second_passed(),
             "heart_rate": random.randint(70, 90),

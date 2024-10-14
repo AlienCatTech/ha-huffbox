@@ -1,5 +1,17 @@
 import socket
 from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any
+
+from homeassistant.core import HomeAssistant
+
+
+def get_current_dir() -> Path:
+    return Path(__file__).parent.resolve()
+
+
+def get_config_dir(hass: HomeAssistant) -> Path:
+    return Path(hass.config.config_dir)
 
 
 def countdown_until(time_string: str) -> str:
@@ -43,4 +55,11 @@ def get_lan_ip() -> str:
     return ip
 
 
-GPIO_VALUES = {"light_gpio": 13, "fan_gpio": 19, "lock_gpio": 26}
+def get_state(hass: HomeAssistant, state: str, default: Any) -> Any:
+    s = hass.states.get(state)
+    if s:
+        return s.state
+    return default
+
+
+GPIO_VALUES = {"strip_gpio": 13, "fan_gpio": 19, "lock_gpio": 26, "led_gpio": 6}

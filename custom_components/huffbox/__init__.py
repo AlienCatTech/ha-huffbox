@@ -6,11 +6,13 @@ from homeassistant.components import frontend
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
+from custom_components.huffbox.scene_studio import SceneStudio
+
 from .const import DOMAIN, LOGGER
-from .coordinator import RandomNumberCoordinator
 from .data import HuffBoxConfigEntry, HuffBoxData
 from .huffbox import HuffBox
 from .load_dashboard import load_dashboard
+from .random_coordinator import RandomNumberCoordinator
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant, ServiceCall
@@ -25,23 +27,26 @@ PLATFORMS: list[str] = [
     Platform.SELECT,
     Platform.TIME,
     Platform.BUTTON,
+    Platform.NUMBER,
 ]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: HuffBoxConfigEntry) -> bool:
     """Set up Hello World from a config entry."""
     huffbox = HuffBox(hass, entry)
-    await huffbox.led.start()
     await huffbox.gpio.start()
-    coordinator = RandomNumberCoordinator(hass, huffbox)
-    await coordinator.async_config_entry_first_refresh()
+    random_coordinator = RandomNumberCoordinator(hass, huffbox)
+    await random_coordinator.async_config_entry_first_refresh()
     entry.runtime_data = HuffBoxData(
         huffbox=huffbox,
-        coordinator=coordinator,
+        random_coordinator=random_coordinator,
     )
     entry.async_on_unload(huffbox.close)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await load_dashboard(hass)
+
+    scene_studio = SceneStudio(hass, entry)
+    huffbox.scene_studio = scene_studio
 
     async def toggle_lock_service(call: ServiceCall) -> None:
         entity_id = call.data.get("entity_id")

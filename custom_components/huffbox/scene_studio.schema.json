@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[0-9]{2}:[0-9]{2}:[0-9]{2}$": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^.+\\..+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "target": {
+            "type": "object",
+            "properties": {
+              "entity_id": {
+                "type": "string"
+              },
+              "device_id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,23 +1,33 @@
 from pathlib import Path
 
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from .common import GPIO_VALUES
+from .common import GPIO_VALUES, get_state
 from .const import NAME
 
 
 class HuffBoxGPIO:
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
+    def __init__(self, hass: HomeAssistant) -> None:
         self.hass = hass
         self.lines = None
         self.pin_map = {
-            "lock": int(config_entry.data.get("lock_gpio", GPIO_VALUES["lock_gpio"])),
-            "fan": config_entry.data.get("fan_gpio", GPIO_VALUES["fan_gpio"]),
-            "light": config_entry.data.get("light_gpio", GPIO_VALUES["light_gpio"]),
+            "lock": int(get_state(hass, "lock_gpio", GPIO_VALUES["lock_gpio"])),
+            "fan": int(get_state(hass, "fan_gpio", GPIO_VALUES["fan_gpio"])),
+            "strip": int(get_state(hass, "strip_gpio", GPIO_VALUES["strip_gpio"])),
+            "led": int(get_state(hass, "led_gpio", GPIO_VALUES["led_gpio"])),
         }
-        self._state = {"lock": False, "fan": False, "light": True}
-        self.reverse_map = {"lock": False, "fan": False, "light": True}
+        self._state = {
+            "lock": False,
+            "fan": False,
+            "strip": True,
+            "led": True,
+        }
+        self.reverse_map = {
+            "lock": False,
+            "fan": False,
+            "strip": True,
+            "led": True,
+        }
         self.chip_name = "/dev/gpiochip4"
 
     async def start(self) -> None:
