@@ -48,12 +48,13 @@ class HuffBoxWLED:
                             if mac:
                                 self.wled_id = mac[-6:]
                                 return self.wled_id
+                except httpx.ConnectError:
+                    pass
                 except Exception as e:
                     LOGGER.error(
                         f"failed to send mqtt to wled - {ip.state}: ", exc_info=e
                     )
 
-        LOGGER.error(f"failed to send mqtt to wled - {name}: ")
         return None
 
     async def send_data(self, body: Any) -> None:

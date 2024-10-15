@@ -39,13 +39,6 @@ async def async_setup_entry(
             HuffTextEntity(
                 entry, "video_link", "hypno.mp4", category=EntityCategory.CONFIG
             ),
-            HuffTextEntity(
-                entry,
-                "scene_studio_preset",
-                category=EntityCategory.CONFIG,
-                get_cb=lambda hb: hb.internal_led.text,
-                set_cb=lambda hb, v: hb.internal_led.send_text(v),
-            ),
             HuffTextEntity(entry, "wled_led_name", category=EntityCategory.CONFIG),
             HuffTextEntity(entry, "wled_strip_name", category=EntityCategory.CONFIG),
         ],

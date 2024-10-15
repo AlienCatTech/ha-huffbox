@@ -33,6 +33,7 @@ async def async_setup_entry(
                 default=1,
                 get_cb=lambda hb: hb.internal_led.text_size,
                 set_cb=lambda hb, v: hb.internal_led.send_text_size(v),
+                native_min_value=1,
                 native_max_value=4,
             ),
         ],

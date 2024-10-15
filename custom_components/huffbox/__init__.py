@@ -7,6 +7,7 @@ from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
 from custom_components.huffbox.scene_studio import SceneStudio
+from custom_components.huffbox.view import HuffBoxDownloadView, HuffBoxUploadView
 
 from .const import DOMAIN, LOGGER
 from .data import HuffBoxConfigEntry, HuffBoxData
@@ -47,6 +48,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: HuffBoxConfigEntry) -> b
 
     scene_studio = SceneStudio(hass, entry)
     huffbox.scene_studio = scene_studio
+
+    upload_view = HuffBoxUploadView(hass, huffbox.media_manager)
+    download_view = HuffBoxDownloadView(hass, huffbox.media_manager)
+    hass.http.register_view(upload_view)
+    hass.http.register_view(download_view)
 
     async def toggle_lock_service(call: ServiceCall) -> None:
         entity_id = call.data.get("entity_id")

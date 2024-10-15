@@ -29,3 +29,13 @@ class HuffBoxMediaManager:
     async def get_file(self, filename: str) -> bytes:
         """List all files in the directory."""
         return await self.hass.async_add_executor_job(self._get_file, filename)
+
+    def _save_file(self, filename: str, content: bytes) -> None:
+        """Save a file to the directory."""
+        file_path = self.directory / filename
+        with file_path.open("wb") as file:
+            file.write(content)
+
+    async def save_file(self, filename: str, content: bytes) -> None:
+        """Save a file to the directory."""
+        await self.hass.async_add_executor_job(self._save_file, filename, content)

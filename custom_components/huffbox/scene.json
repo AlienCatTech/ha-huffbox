@@ -1,7 +1,8 @@
 {
     "$schema": "scene_studio.schema.json",
-    "00:00:00": {
-        "text.set_value": {
+    "00:00:00": [
+        {
+            "service": "text.set_value",
             "data": {
                 "value": 1
             },
@@ -9,15 +10,16 @@
                 "entity_id": "text.huffbox_custom_led_text"
             }
         }
-    },
-    "00:00:03": {
-        "text.set_value": {
+    ],
+    "00:00:03": [
+        {
+            "service": "text.set_value",
             "data": {
-                "value": 2
+                "a": 2
             },
             "target": {
-                "entity_id": "text.huffbox_custom_led_text"
+                "device_id": "text.huffbox_custom_led_text"
             }
         }
-    }
+    ]
 }

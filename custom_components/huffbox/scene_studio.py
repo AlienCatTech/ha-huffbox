@@ -6,6 +6,7 @@ from typing import Any
 import homeassistant.util.dt as dt_util
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import template
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import async_track_point_in_time
@@ -53,14 +54,16 @@ class SceneStudio(HuffBoxBaseEntity, Entity):
         except ValueError:
             return None
 
-    def _async_call_service(self, service: str, call_info: dict, time_str: str) -> Any:
+    def _async_call_service(self, service: dict, time_str: str) -> Any:
         async def call_service(*_: Any) -> None:
-            domain, service_name = service.split(".")
-            data = call_info.get("data", {})
-            target = call_info.get("target")
+            domain, service_name = service.get("service", "").split(".")
+            data = service.get("data", {})
+            target = service.get("target")
             self._set_state(f"[{time_str}] - {service}")
+            t = template.Template(json.dumps(data), self.hass)
+
             await self.hass.services.async_call(
-                domain, service_name, data, target=target
+                domain, service_name, t.async_render(), target=target
             )
             # Remove the timer using the known time_str
             self._timers.pop(time_str, None)
@@ -83,16 +86,16 @@ class SceneStudio(HuffBoxBaseEntity, Entity):
             self._timers.clear()
             if self.validate(schedules):
                 now = dt_util.utcnow()
-                for time_str, service_info in schedules.items():
+                for time_str, service_list in schedules.items():
                     delay = self._parse_time_string(time_str)
                     if delay is None:
                         continue
 
                     run_at = now + delay
-                    for service, call_info in service_info.items():
+                    for service in service_list:
                         self._timers[time_str] = async_track_point_in_time(
                             self.hass,
-                            self._async_call_service(service, call_info, time_str),
+                            self._async_call_service(service, time_str),
                             run_at,
                         )
                 self._set_state(f"Scene Started with {len(self._timers)} services")
