@@ -1,5 +1,3 @@
-from typing import Any
-
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
@@ -27,7 +25,6 @@ class HuffBox:
         self.is_locked = False
         self.gpio = HuffBoxGPIO(hass)
         self.internal_led = HuffBoxWLED(hass, "text.huffbox_wled_led_name")
-        self.scene_studio: Any = None
         self.media_manager = HuffBoxMediaManager(hass, get_config_dir(hass) / "media")
 
     def update_second_passed(self) -> int:

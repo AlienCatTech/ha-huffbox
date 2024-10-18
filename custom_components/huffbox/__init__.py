@@ -6,7 +6,6 @@ from homeassistant.components import frontend
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
-from custom_components.huffbox.scene_studio import SceneStudio
 from custom_components.huffbox.view import HuffBoxDownloadView, HuffBoxUploadView
 
 from .const import DOMAIN, LOGGER
@@ -29,6 +28,7 @@ PLATFORMS: list[str] = [
     Platform.TIME,
     Platform.BUTTON,
     Platform.NUMBER,
+    Platform.MEDIA_PLAYER,
 ]
 
 
@@ -45,9 +45,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: HuffBoxConfigEntry) -> b
     entry.async_on_unload(huffbox.close)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await load_dashboard(hass)
-
-    scene_studio = SceneStudio(hass, entry)
-    huffbox.scene_studio = scene_studio
 
     upload_view = HuffBoxUploadView(hass, huffbox.media_manager)
     download_view = HuffBoxDownloadView(hass, huffbox.media_manager)

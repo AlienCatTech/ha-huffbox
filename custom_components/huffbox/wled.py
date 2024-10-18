@@ -72,6 +72,7 @@ class HuffBoxWLED:
     async def send_text(self, text: str) -> None:
         if text == self.text:
             return
+        self.text = text
         body = {
             "seg": [
                 {
@@ -86,6 +87,9 @@ class HuffBoxWLED:
         await self.send_data(body)
 
     async def send_text_size(self, size: int) -> None:
+        if size == self.text_size:
+            return
+        self.text_size = size
         body = {
             "seg": [
                 {
@@ -100,6 +104,9 @@ class HuffBoxWLED:
         await self.send_data(body)
 
     async def send_text_speed(self, speed: int) -> None:
+        if speed == self.text_speed:
+            return
+        self.text_speed = speed
         body = {
             "seg": [
                 {

@@ -7,17 +7,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .data import HuffBoxConfigEntry
 from .entity import HuffBoxBaseEntity
-from .huffbox import HuffBox
-
-
-async def start_scene(ha: HomeAssistant, hb: HuffBox) -> None:
-    s = ha.states.get("select.huffbox_select_scene_studio_preset")
-    if s:
-        await hb.scene_studio.start(s.state)
-
-
-async def stop_scene(_: HomeAssistant, hb: HuffBox) -> None:
-    hb.scene_studio.stop()
 
 
 async def async_setup_entry(
@@ -32,16 +21,6 @@ async def async_setup_entry(
                 "refresh_button",
                 press_cb=lambda hass, _: hass.bus.async_fire("huffbox_refresh_event"),
                 is_config=True,
-            ),
-            HuffBoxButton(
-                entry,
-                "start_scene_studio",
-                press_cb=lambda ha, hb: start_scene(ha, hb),
-            ),
-            HuffBoxButton(
-                entry,
-                "stop_scene_studio",
-                press_cb=lambda ha, hb: stop_scene(ha, hb),
             ),
         ],
         update_before_add=True,

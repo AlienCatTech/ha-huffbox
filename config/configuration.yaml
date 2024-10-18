@@ -2,7 +2,7 @@
 default_config:
 
 # automation: !include automations.yaml
-script: !include scripts.yaml
+# script: !include scripts.yaml
 # scene: !include scenes.yaml
 
 # https://www.home-assistant.io/integrations/logger/
@@ -25,3 +25,7 @@ homeassistant:
   media_dirs:
     media: ./media
   # debug: true
+
+http:
+  cors_allowed_origins:
+    - https://aliencattech.github.io

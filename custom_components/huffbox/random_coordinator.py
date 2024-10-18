@@ -1,5 +1,6 @@
 import random
 from datetime import timedelta
+from typing import Any
 
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import (
@@ -23,11 +24,12 @@ class RandomNumberCoordinator(DataUpdateCoordinator):
         )
         self.huffbox = huffbox
 
-    async def _async_update_data(self) -> dict[str, int]:
+    async def _async_update_data(self) -> dict[str, Any]:
         """Fetch data from API endpoint."""
         await self.huffbox.update_led()
         return {
             "second_passed": self.huffbox.update_second_passed(),
+            "media_player_second_passed": lambda x: x(),
             "heart_rate": random.randint(70, 90),
             "pulse": random.randint(70, 90),
             "spo2": random.randint(90, 99),
