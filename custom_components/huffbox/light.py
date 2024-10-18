@@ -20,17 +20,21 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     async_add_entities(
-        [HuffBoxStripLights(entry), HuffBoxInternalLED(entry), HuffUILightTheme(entry)],
+        [
+            HuffBoxAmbientLight(entry),
+            HuffBoxPixelLED(entry),
+            HuffUILightTheme(entry),
+        ],
         update_before_add=True,
     )
 
 
-class HuffBoxStripLights(HuffBoxBaseEntity, LightEntity):
+class HuffBoxAmbientLight(HuffBoxBaseEntity, LightEntity):
     _attr_color_mode = ColorMode.ONOFF
     _attr_supported_color_modes: ClassVar[set[ColorMode]] = {ColorMode.ONOFF}
 
     def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
-        super().__init__(config_entry, "strip_light")
+        super().__init__(config_entry, "ambient_light")
 
     @property
     def color_mode(self) -> ColorMode | str | None:
@@ -42,40 +46,40 @@ class HuffBoxStripLights(HuffBoxBaseEntity, LightEntity):
 
     @property
     def is_on(self) -> bool:
-        return self.huffbox.gpio.get_gpio_state("strip")
+        return self.huffbox.gpio.get_gpio_state("ambient_light")
 
     async def async_turn_on(self) -> None:
-        self.huffbox.gpio.set_gpio_state("strip", state=True)
+        self.huffbox.gpio.set_gpio_state("ambient_light", state=True)
 
     async def async_turn_off(self) -> None:
-        self.huffbox.gpio.set_gpio_state("strip", state=False)
+        self.huffbox.gpio.set_gpio_state("ambient_light", state=False)
 
 
-class HuffBoxInternalLED(HuffBoxBaseEntity, LightEntity):
+class HuffBoxPixelLED(HuffBoxBaseEntity, LightEntity):
     _attr_color_mode = ColorMode.ONOFF
     _attr_supported_color_modes: ClassVar[set[ColorMode]] = {ColorMode.ONOFF}
     _attr_supported_features = LightEntityFeature.EFFECT
 
     def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
-        super().__init__(config_entry, "internal_led")
-        self._attr_effect_list = self.huffbox.internal_led.effect_list
+        super().__init__(config_entry, "pixel_led")
+        self._attr_effect_list = self.huffbox.pixel_led.effect_list
 
     @property
     def is_on(self) -> bool:
-        return self.huffbox.gpio.get_gpio_state("led")
+        return self.huffbox.gpio.get_gpio_state("pixel_led")
 
     @property
     def effect(self) -> str:
-        return self.huffbox.internal_led.effect
+        return self.huffbox.pixel_led.effect
 
     async def async_turn_on(self, **kwargs: str) -> None:
-        self.huffbox.gpio.set_gpio_state("led", state=True)
+        self.huffbox.gpio.set_gpio_state("pixel_led", state=True)
         if ATTR_EFFECT in kwargs:
             new_effect = kwargs[ATTR_EFFECT]
-            self.huffbox.internal_led.effect = new_effect
+            self.huffbox.pixel_led.effect = new_effect
 
     async def async_turn_off(self) -> None:
-        self.huffbox.gpio.set_gpio_state("led", state=False)
+        self.huffbox.gpio.set_gpio_state("pixel_led", state=False)
 
 
 class HuffUILightTheme(HuffBoxBaseEntity, LightEntity):

@@ -62,4 +62,4 @@ def get_state(hass: HomeAssistant, state: str, default: Any) -> Any:
     return default
 
 
-GPIO_VALUES = {"strip_gpio": 13, "fan_gpio": 19, "lock_gpio": 26, "led_gpio": 6}
+GPIO_VALUES = {"ambient_gpio": 13, "fan_gpio": 19, "lock_gpio": 26, "pixel_gpio": 6}

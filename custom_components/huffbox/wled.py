@@ -77,9 +77,6 @@ class HuffBoxWLED:
             "seg": [
                 {
                     "fx": 122,  # scroll text
-                    "sx": 255,  # speed
-                    "ix": 128,  # y offset
-                    "c1": 1,  # trail
                     "n": text,  # text
                 }
             ]
@@ -93,11 +90,7 @@ class HuffBoxWLED:
         body = {
             "seg": [
                 {
-                    "fx": 122,  # scroll text
-                    "sx": 255,  # speed
-                    "ix": 128,  # y offset
                     "grp": size,  # grouping/font size
-                    "c1": 1,  # trail
                 }
             ]
         }
@@ -110,10 +103,7 @@ class HuffBoxWLED:
         body = {
             "seg": [
                 {
-                    "fx": 122,  # scroll text
                     "sx": speed,  # speed
-                    "ix": 128,  # y offset
-                    "c1": 1,  # trail
                 }
             ]
         }

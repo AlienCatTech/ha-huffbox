@@ -24,7 +24,7 @@ class HuffBox:
         self.second_passed = 0
         self.is_locked = False
         self.gpio = HuffBoxGPIO(hass)
-        self.internal_led = HuffBoxWLED(hass, "text.huffbox_wled_led_name")
+        self.pixel_led = HuffBoxWLED(hass, "text.huffbox_wled_pixel_led_name")
         self.media_manager = HuffBoxMediaManager(hass, get_config_dir(hass) / "media")
 
     def update_second_passed(self) -> int:
@@ -36,17 +36,17 @@ class HuffBox:
         return self.second_passed
 
     async def update_led(self) -> None:
-        match self.internal_led.effect:
+        match self.pixel_led.effect:
             case e if e == EFFECT_COUNTDOWN:
                 future = self.hass.states.get("time.huffbox_time")
                 if future:
-                    await self.internal_led.send_text(countdown_until(future.state))
+                    await self.pixel_led.send_text(countdown_until(future.state))
             case e if e == EFFECT_TIMER:
-                await self.internal_led.send_text(sec_to_hms(self.second_passed))
+                await self.pixel_led.send_text(sec_to_hms(self.second_passed))
             case e if e == EFFECT_CUSTOM_TEXT:
                 custom_text = self.hass.states.get("text.huffbox_custom_led_text")
                 if custom_text:
-                    await self.internal_led.send_text(custom_text.state)
+                    await self.pixel_led.send_text(custom_text.state)
             case _:
                 return
 

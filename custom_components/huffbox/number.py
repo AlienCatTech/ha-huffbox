@@ -17,22 +17,23 @@ async def async_setup_entry(
 ) -> None:
     async_add_entities(
         [
-            GPIOPinEntity(entry, "strip"),
+            GPIOPinEntity(entry, "ambient_light"),
+            GPIOPinEntity(entry, "pixel_led"),
             GPIOPinEntity(entry, "fan"),
             GPIOPinEntity(entry, "lock"),
             HuffBoxNumberEntity(
                 entry,
                 "text_speed",
                 default=255,
-                get_cb=lambda hb: hb.internal_led.text_speed,
-                set_cb=lambda hb, v: hb.internal_led.send_text_speed(v),
+                get_cb=lambda hb: hb.pixel_led.text_speed,
+                set_cb=lambda hb, v: hb.pixel_led.send_text_speed(v),
             ),
             HuffBoxNumberEntity(
                 entry,
                 "text_size",
                 default=1,
-                get_cb=lambda hb: hb.internal_led.text_size,
-                set_cb=lambda hb, v: hb.internal_led.send_text_size(v),
+                get_cb=lambda hb: hb.pixel_led.text_size,
+                set_cb=lambda hb, v: hb.pixel_led.send_text_size(v),
                 native_min_value=1,
                 native_max_value=4,
             ),

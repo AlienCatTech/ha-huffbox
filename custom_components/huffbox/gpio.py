@@ -13,20 +13,22 @@ class HuffBoxGPIO:
         self.pin_map = {
             "lock": int(get_state(hass, "lock_gpio", GPIO_VALUES["lock_gpio"])),
             "fan": int(get_state(hass, "fan_gpio", GPIO_VALUES["fan_gpio"])),
-            "strip": int(get_state(hass, "strip_gpio", GPIO_VALUES["strip_gpio"])),
-            "led": int(get_state(hass, "led_gpio", GPIO_VALUES["led_gpio"])),
+            "ambient_light": int(
+                get_state(hass, "ambient_gpio", GPIO_VALUES["ambient_gpio"])
+            ),
+            "pixel_led": int(get_state(hass, "pixel_gpio", GPIO_VALUES["pixel_gpio"])),
         }
         self._state = {
             "lock": False,
             "fan": False,
-            "strip": True,
-            "led": True,
+            "ambient_light": True,
+            "pixel_led": True,
         }
         self.reverse_map = {
             "lock": False,
             "fan": False,
-            "strip": True,
-            "led": True,
+            "ambient_light": True,
+            "pixel_led": True,
         }
         self.chip_name = "/dev/gpiochip4"
 

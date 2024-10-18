@@ -13,8 +13,8 @@ from .wled import EFFECT_CUSTOM_TEXT
 
 
 async def set_custom_text_effect(hb: HuffBox, v: str) -> None:
-    hb.internal_led.effect = EFFECT_CUSTOM_TEXT
-    await hb.internal_led.send_text(v)
+    hb.pixel_led.effect = EFFECT_CUSTOM_TEXT
+    await hb.pixel_led.send_text(v)
 
 
 async def async_setup_entry(
@@ -39,8 +39,12 @@ async def async_setup_entry(
             HuffTextEntity(
                 entry, "video_link", "hypno.mp4", category=EntityCategory.CONFIG
             ),
-            HuffTextEntity(entry, "wled_led_name", category=EntityCategory.CONFIG),
-            HuffTextEntity(entry, "wled_strip_name", category=EntityCategory.CONFIG),
+            HuffTextEntity(
+                entry, "wled_pixel_led_name", category=EntityCategory.CONFIG
+            ),
+            HuffTextEntity(
+                entry, "wled_ambient_light_name", category=EntityCategory.CONFIG
+            ),
         ],
         update_before_add=True,
     )
