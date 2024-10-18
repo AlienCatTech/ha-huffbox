@@ -8,6 +8,13 @@ class HuffBoxMediaManager:
         self.hass = hass
         self.directory = Path(directory)
 
+    async def start(self) -> None:
+        await self.hass.async_add_executor_job(self._start)
+
+    def _start(self) -> None:
+        if not self.directory.exists():
+            self.directory.mkdir(parents=True, exist_ok=True)
+
     def _list_files(self) -> list[Path]:
         """List all files in the directory."""
         return [file for file in self.directory.iterdir() if file.is_file()]

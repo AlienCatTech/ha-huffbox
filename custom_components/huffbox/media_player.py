@@ -188,6 +188,9 @@ class HuffBoxSceneStudioPlayer(HuffBoxBaseEntity, CoordinatorEntity, MediaPlayer
     async def async_added_to_hass(self) -> None:
         await super().async_added_to_hass()
         self.source_list = await self.load_scene_studio_options()
+        await self.hass.async_add_executor_job(self._load_schema)
+
+    def _load_schema(self) -> None:
         with Path.open(get_current_dir() / SCHEMAS) as schema_file:
             self.schema = json.load(schema_file)
 

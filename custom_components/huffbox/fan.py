@@ -1,4 +1,4 @@
-from homeassistant.components.fan import FanEntity
+from homeassistant.components.fan import FanEntity, FanEntityFeature
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -15,6 +15,8 @@ async def async_setup_entry(
 
 
 class HuffBoxFan(HuffBoxBaseEntity, FanEntity):
+    _attr_supported_features = FanEntityFeature.TURN_ON | FanEntityFeature.TURN_OFF
+
     def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
         super().__init__(config_entry, "control_fan")
 
