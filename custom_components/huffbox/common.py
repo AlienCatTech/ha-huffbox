@@ -1,4 +1,5 @@
 import socket
+import ssl
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -63,3 +64,7 @@ def get_state(hass: HomeAssistant, state: str, default: Any) -> Any:
 
 
 GPIO_VALUES = {"ambient_gpio": 13, "fan_gpio": 19, "lock_gpio": 26, "pixel_gpio": 6}
+
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE

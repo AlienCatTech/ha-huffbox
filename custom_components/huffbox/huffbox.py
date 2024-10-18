@@ -24,7 +24,7 @@ class HuffBox:
         self.second_passed = 0
         self.is_locked = False
         self.gpio = HuffBoxGPIO(hass)
-        self.pixel_led = HuffBoxWLED(hass, "text.huffbox_wled_pixel_led_name")
+        self.pixel_led = HuffBoxWLED(hass, "text.huffbox_wled_pixel_led_ip")
         self.media_manager = HuffBoxMediaManager(hass, get_config_dir(hass) / "media")
 
     def update_second_passed(self) -> int:

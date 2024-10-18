@@ -7,6 +7,8 @@ from homeassistant.core import HomeAssistant
 
 from custom_components.huffbox.const import LOGGER
 
+from .common import ssl_context
+
 HTTP_OK_STATUS = 200
 EFFECT_COUNTDOWN = "Countdown"
 EFFECT_TIMER = "Timer"
@@ -32,28 +34,23 @@ class HuffBoxWLED:
         if self.wled_id:
             return self.wled_id
 
-        name = self.hass.states.get(self.state_name)
-        if name:
-            try_name = name.state.replace("-", "_")
-            ip = self.hass.states.get(f"sensor.{try_name}_ip")
-            if ip:
-                try:
-                    async with httpx.AsyncClient(timeout=10) as client:
-                        response = await client.get(
-                            f"http://{ip.state}/json/info", timeout=10
-                        )
-                        if response.status_code == HTTP_OK_STATUS:
-                            j = response.json()
-                            mac = j.get("mac")
-                            if mac:
-                                self.wled_id = mac[-6:]
-                                return self.wled_id
-                except httpx.ConnectError:
-                    pass
-                except Exception as e:
-                    LOGGER.error(
-                        f"failed to send mqtt to wled - {ip.state}: ", exc_info=e
+        ip = self.hass.states.get(self.state_name)
+        if ip:
+            try:
+                async with httpx.AsyncClient(timeout=10, verify=ssl_context) as client:
+                    response = await client.get(
+                        f"http://{ip.state}/json/info", timeout=10
                     )
+                    if response.status_code == HTTP_OK_STATUS:
+                        j = response.json()
+                        mac = j.get("mac")
+                        if mac:
+                            self.wled_id = mac[-6:]
+                            return self.wled_id
+            except httpx.ConnectError:
+                pass
+            except Exception as e:
+                LOGGER.error(f"failed to send mqtt to wled - {ip.state}: ", exc_info=e)
 
         return None
 

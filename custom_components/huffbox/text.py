@@ -39,11 +39,9 @@ async def async_setup_entry(
             HuffTextEntity(
                 entry, "video_link", "hypno.mp4", category=EntityCategory.CONFIG
             ),
+            HuffTextEntity(entry, "wled_pixel_led_ip", category=EntityCategory.CONFIG),
             HuffTextEntity(
-                entry, "wled_pixel_led_name", category=EntityCategory.CONFIG
-            ),
-            HuffTextEntity(
-                entry, "wled_ambient_light_name", category=EntityCategory.CONFIG
+                entry, "wled_ambient_light_ip", category=EntityCategory.CONFIG
             ),
         ],
         update_before_add=True,
