@@ -12,19 +12,33 @@ async def async_setup_entry(
     entry: HuffBoxConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    async_add_entities([HuffBoxSelect(entry)], update_before_add=True)
+    async_add_entities(
+        [
+            HuffBoxSelect(
+                entry,
+                "select_dashboard",
+                [
+                    "default",
+                    "custom",
+                    "fullscreen-image",
+                    "fullscreen-text",
+                    "fullscreen-video",
+                ],
+            ),
+        ],
+        update_before_add=True,
+    )
 
 
 class HuffBoxSelect(HuffBoxBaseEntity, RestoreEntity, SelectEntity):
-    def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
-        super().__init__(config_entry, "select_dashboard")
-        self.dashboard_options = [
-            "default",
-            "custom",
-            "fullscreen-image",
-            "fullscreen-text",
-            "fullscreen-video",
-        ]
+    def __init__(
+        self,
+        config_entry: HuffBoxConfigEntry,
+        name: str,
+        options: list,
+    ) -> None:
+        super().__init__(config_entry, name)
+        self.dashboard_options = options
         self._current = self.dashboard_options[0]
 
     @property

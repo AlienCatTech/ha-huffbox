@@ -6,16 +6,17 @@ from threading import Event, Thread
 from homeassistant.core import HomeAssistant
 from PIL import ImageFont
 
+from custom_components.huffbox.common import get_current_dir
+
 from .const import LOGGER
 
-current_dir = Path(__file__).parent.resolve()
-thin_font = (ImageFont.truetype(current_dir / "fonts" / "slkscr.ttf", 8), 7)
+thin_font = (ImageFont.truetype(get_current_dir() / "fonts" / "slkscr.ttf", 8), 7)
 normal_font = (
-    ImageFont.truetype(current_dir / "fonts" / "pixelmix.ttf", 8),
+    ImageFont.truetype(get_current_dir() / "fonts" / "pixelmix.ttf", 8),
     6,
 )
 bold_font = (
-    ImageFont.truetype(current_dir / "fonts" / "Super Mario Bros. 2.ttf", 8),
+    ImageFont.truetype(get_current_dir() / "fonts" / "Super Mario Bros. 2.ttf", 8),
     8,
 )
 
@@ -24,7 +25,7 @@ def sec_to_hms(seconds: int) -> str:
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = seconds % 60
-    return f"{hours}:{minutes:02d}:{seconds:02d}"
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
 
 EFFECT_COUNTDOWN = "Countdown"

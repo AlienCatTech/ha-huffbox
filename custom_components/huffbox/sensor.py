@@ -1,4 +1,5 @@
 from homeassistant.components.sensor import SensorEntity
+from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -33,9 +34,11 @@ class MockSensor(
     CoordinatorEntity,
     SensorEntity,
 ):
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+
     def __init__(self, config_entry: HuffBoxConfigEntry, name: str) -> None:
         super().__init__(config_entry, name)
-        CoordinatorEntity.__init__(self, config_entry.runtime_data.coordinator)
+        CoordinatorEntity.__init__(self, config_entry.runtime_data.random_coordinator)
         self._name = name
 
     @property
@@ -47,6 +50,8 @@ class IPSensor(
     HuffBoxBaseEntity,
     SensorEntity,
 ):
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+
     def __init__(self, config_entry: HuffBoxConfigEntry) -> None:
         super().__init__(config_entry, "lan_ip")
         self._state = get_lan_ip()

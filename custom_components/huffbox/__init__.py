@@ -6,11 +6,17 @@ from homeassistant.components import frontend
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
+from custom_components.huffbox.view import (
+    HuffBoxDownloadView,
+    HuffBoxProxyView,
+    HuffBoxUploadView,
+)
+
 from .const import DOMAIN, LOGGER
-from .coordinator import RandomNumberCoordinator
 from .data import HuffBoxConfigEntry, HuffBoxData
 from .huffbox import HuffBox
 from .load_dashboard import load_dashboard
+from .random_coordinator import RandomNumberCoordinator
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant, ServiceCall
@@ -25,23 +31,32 @@ PLATFORMS: list[str] = [
     Platform.SELECT,
     Platform.TIME,
     Platform.BUTTON,
+    Platform.NUMBER,
+    Platform.MEDIA_PLAYER,
 ]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: HuffBoxConfigEntry) -> bool:
     """Set up Hello World from a config entry."""
     huffbox = HuffBox(hass, entry)
-    await huffbox.led.start()
     await huffbox.gpio.start()
-    coordinator = RandomNumberCoordinator(hass, huffbox)
-    await coordinator.async_config_entry_first_refresh()
+    await huffbox.media_manager.start()
+    random_coordinator = RandomNumberCoordinator(hass, huffbox)
+    await random_coordinator.async_config_entry_first_refresh()
     entry.runtime_data = HuffBoxData(
         huffbox=huffbox,
-        coordinator=coordinator,
+        random_coordinator=random_coordinator,
     )
     entry.async_on_unload(huffbox.close)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await load_dashboard(hass)
+
+    upload_view = HuffBoxUploadView(hass, huffbox.media_manager)
+    download_view = HuffBoxDownloadView(hass, huffbox.media_manager)
+    proxy_view = HuffBoxProxyView(hass)
+    hass.http.register_view(upload_view)
+    hass.http.register_view(download_view)
+    hass.http.register_view(proxy_view)
 
     async def toggle_lock_service(call: ServiceCall) -> None:
         entity_id = call.data.get("entity_id")

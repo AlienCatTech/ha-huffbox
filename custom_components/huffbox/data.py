@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from homeassistant.config_entries import ConfigEntry
 
-from custom_components.huffbox.coordinator import RandomNumberCoordinator
+from custom_components.huffbox.random_coordinator import RandomNumberCoordinator
 
 from .huffbox import HuffBox
 
@@ -14,4 +14,4 @@ class HuffBoxData:
     """Data for the integration."""
 
     huffbox: HuffBox
-    coordinator: RandomNumberCoordinator
+    random_coordinator: RandomNumberCoordinator

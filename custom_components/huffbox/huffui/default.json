@@ -490,7 +490,7 @@
 														{
 															"component": "SimpleSwitch",
 															"props": {
-																"state": "light.huffbox_control_light",
+																"state": "light.huffbox_ambient_light",
 																"height": "h-6",
 																"onClass": "bg-orange-600",
 																"offClass": "bg-neutral-500"

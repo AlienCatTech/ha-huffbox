@@ -1,5 +1,18 @@
-import socket
+import ssl
 from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any
+
+import netifaces
+from homeassistant.core import HomeAssistant
+
+
+def get_current_dir() -> Path:
+    return Path(__file__).parent.resolve()
+
+
+def get_config_dir(hass: HomeAssistant) -> Path:
+    return Path(hass.config.config_dir)
 
 
 def countdown_until(time_string: str) -> str:
@@ -31,16 +44,38 @@ def snake_to_title(snake_str: str) -> str:
 
 
 def get_lan_ip() -> str:
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        # doesn't even have to be reachable
-        s.connect(("10.0.0.0", 0))
-        ip = s.getsockname()[0]
-    except Exception:
-        ip = socket.gethostbyname(socket.gethostname())
-    finally:
-        s.close()
-    return ip
+    lan_ips = []
+    interfaces = netifaces.interfaces()
+
+    for interface in interfaces:
+        try:
+            addr = netifaces.ifaddresses(interface).get(netifaces.AF_INET)
+            if addr:
+                for link in addr:
+                    ip = link["addr"]
+                    if ip != "127.0.0.1":
+                        lan_ips.append(ip)
+        except ValueError:
+            pass
+
+    return ", ".join(lan_ips)
 
 
-GPIO_VALUES = {"light_gpio": 13, "fan_gpio": 19, "lock_gpio": 26}
+def get_state(hass: HomeAssistant, state: str, default: Any) -> Any:
+    s = hass.states.get(state)
+    if s:
+        return s.state
+    return default
+
+
+GPIO_VALUES = {"ambient_gpio": 13, "fan_gpio": 19, "lock_gpio": 26, "pixel_gpio": 6}
+
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
+
+
+def www_to_link(hass: HomeAssistant, path: Path) -> str:
+    prefix = str(get_config_dir(hass) / "www")
+    s = str(path)
+    return s.replace(prefix, "/local")

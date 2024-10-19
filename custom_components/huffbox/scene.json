@@ -1,0 +1,25 @@
+{
+    "$schema": "scene_studio.schema.json",
+    "00:00:00": [
+        {
+            "service": "text.set_value",
+            "data": {
+                "value": 1
+            },
+            "target": {
+                "entity_id": "text.huffbox_custom_led_text"
+            }
+        }
+    ],
+    "00:00:03": [
+        {
+            "service": "text.set_value",
+            "data": {
+                "a": 2
+            },
+            "target": {
+                "device_id": "text.huffbox_custom_led_text"
+            }
+        }
+    ]
+}
