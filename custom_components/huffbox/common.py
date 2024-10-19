@@ -43,7 +43,7 @@ def snake_to_title(snake_str: str) -> str:
     return " ".join(word.capitalize() for word in snake_str.split("_"))
 
 
-def get_all_lan_ips() -> str:
+def get_lan_ip() -> str:
     lan_ips = []
     interfaces = netifaces.interfaces()
 
@@ -54,11 +54,11 @@ def get_all_lan_ips() -> str:
                 for link in addr:
                     ip = link["addr"]
                     if ip != "127.0.0.1":
-                        lan_ips.append((interface, ip))
+                        lan_ips.append(ip)
         except ValueError:
             pass
 
-    return ",".join(lan_ips)
+    return ", ".join(lan_ips)
 
 
 def get_state(hass: HomeAssistant, state: str, default: Any) -> Any:
