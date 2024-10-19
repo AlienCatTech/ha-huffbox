@@ -1,3 +1,4 @@
+import asyncio
 import json
 from datetime import timedelta
 from pathlib import Path
@@ -74,12 +75,33 @@ class HuffBoxSceneStudioPlayer(HuffBoxBaseEntity, CoordinatorEntity, MediaPlayer
         self.state = MediaPlayerState.ON
         self._timers = {}
         self._position = 0
+        self._init_services_states = {}
 
     @property
     def media_position(self) -> int:
         return self.coordinator.data["media_player_second_passed"](
             self.update_second_passed
         )
+
+    def _save_affected_services_states(self, schedules: dict) -> None:
+        self._init_services_states = {}
+        for service_list in schedules.values():
+            for service in service_list:
+                target = service.get("target", {})
+                entity_id = target.get("entity_id")
+                if entity_id and entity_id not in self._init_services_states:
+                    state = self.hass.states.get(entity_id)
+                    if state:
+                        self._init_services_states[entity_id] = state.state
+
+    async def _revert_affected_services_states(self) -> None:
+        self.state = MediaPlayerState.BUFFERING
+        await asyncio.sleep(5)
+        for entity_id, original_state in self._init_services_states.items():
+            self.hass.states.async_set(entity_id, original_state, force_update=True)
+            LOGGER.info(original_state)
+        self._init_services_states.clear()
+        LOGGER.info("reseted")
 
     def update_second_passed(self) -> int | None:
         if self.state == MediaPlayerState.PLAYING:
@@ -116,14 +138,14 @@ class HuffBoxSceneStudioPlayer(HuffBoxBaseEntity, CoordinatorEntity, MediaPlayer
             )
             # Remove the timer using the known time_str
             self._timers.pop(time_str, None)
-            self._check_and_update_state()
+            LOGGER.info(time_str)
+            await self._check_and_update_state()
 
         return call_service
 
-    def _check_and_update_state(self) -> None:
+    async def _check_and_update_state(self) -> None:
         if not self._timers:
-            self.state = MediaPlayerState.IDLE
-            self.async_schedule_update_ha_state()
+            await self.stop()
 
     async def load_scene_studio_options(self) -> list[str]:
         scene_studio_presets = await self.huffbox.media_manager.list_files()
@@ -139,6 +161,7 @@ class HuffBoxSceneStudioPlayer(HuffBoxBaseEntity, CoordinatorEntity, MediaPlayer
             timer()
         self._timers.clear()
         if self._validate(schedules):
+            self._save_affected_services_states(schedules)
             self.state = MediaPlayerState.PLAYING
             self.media_duration = get_last_key_as_seconds(schedules)
             self.media_playlist = self.source
@@ -161,10 +184,11 @@ class HuffBoxSceneStudioPlayer(HuffBoxBaseEntity, CoordinatorEntity, MediaPlayer
             msg = "file invalid"
             raise Error(msg)
 
-    def stop(self) -> None:
+    async def stop(self) -> None:
         """Stop all scheduled services and reset the state."""
         for timer in self._timers.values():
             timer()
+        await self._revert_affected_services_states()
         self.state = MediaPlayerState.IDLE
         self.media_playlist = None
         self.async_schedule_update_ha_state()
@@ -176,7 +200,7 @@ class HuffBoxSceneStudioPlayer(HuffBoxBaseEntity, CoordinatorEntity, MediaPlayer
         await self.start(self.source)
 
     async def async_media_stop(self) -> None:
-        self.stop()
+        await self.stop()
 
     def async_select_source(self, source: str) -> None:
         self.source = source

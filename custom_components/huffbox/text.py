@@ -74,6 +74,7 @@ class HuffTextEntity(HuffBoxBaseEntity, RestoreEntity, TextEntity):
     async def async_set_value(self, value: str) -> None:
         if self.set_cb is not None:
             await self.set_cb(self.huffbox, value)
+        self.async_schedule_update_ha_state()
         self._state = value
         self.async_write_ha_state()
 
