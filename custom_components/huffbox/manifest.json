@@ -14,8 +14,8 @@
     "issue_tracker": "https://github.com/AlienCatTech/ha-huffbox/issues",
     "requirements": [
         "gpiod==2.2.0",
-        "luma.led-matrix==1.7.1",
-        "jsonschema==4.23.0"
+        "jsonschema==4.23.0",
+        "glitch-this==1.0.3"
     ],
     "version": "0.1.0"
 }

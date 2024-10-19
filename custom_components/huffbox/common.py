@@ -1,9 +1,9 @@
-import socket
 import ssl
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+import netifaces
 from homeassistant.core import HomeAssistant
 
 
@@ -43,17 +43,22 @@ def snake_to_title(snake_str: str) -> str:
     return " ".join(word.capitalize() for word in snake_str.split("_"))
 
 
-def get_lan_ip() -> str:
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        # doesn't even have to be reachable
-        s.connect(("10.0.0.0", 0))
-        ip = s.getsockname()[0]
-    except Exception:
-        ip = socket.gethostbyname(socket.gethostname())
-    finally:
-        s.close()
-    return ip
+def get_all_lan_ips() -> str:
+    lan_ips = []
+    interfaces = netifaces.interfaces()
+
+    for interface in interfaces:
+        try:
+            addr = netifaces.ifaddresses(interface).get(netifaces.AF_INET)
+            if addr:
+                for link in addr:
+                    ip = link["addr"]
+                    if ip != "127.0.0.1":
+                        lan_ips.append((interface, ip))
+        except ValueError:
+            pass
+
+    return ",".join(lan_ips)
 
 
 def get_state(hass: HomeAssistant, state: str, default: Any) -> Any:
@@ -68,3 +73,9 @@ GPIO_VALUES = {"ambient_gpio": 13, "fan_gpio": 19, "lock_gpio": 26, "pixel_gpio"
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
+
+
+def www_to_link(hass: HomeAssistant, path: Path) -> str:
+    prefix = str(get_config_dir(hass) / "www")
+    s = str(path)
+    return s.replace(prefix, "/local")

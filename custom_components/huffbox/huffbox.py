@@ -1,6 +1,7 @@
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
+from custom_components.huffbox.glitch import Glitcher
 from custom_components.huffbox.media import HuffBoxMediaManager
 
 from .common import countdown_until, get_config_dir
@@ -26,6 +27,7 @@ class HuffBox:
         self.gpio = HuffBoxGPIO(hass)
         self.pixel_led = HuffBoxWLED(hass, "text.huffbox_wled_pixel_led_ip")
         self.media_manager = HuffBoxMediaManager(hass, get_config_dir(hass) / "media")
+        self.glicher = Glitcher(hass)
 
     def update_second_passed(self) -> int:
         if self.is_locked:
