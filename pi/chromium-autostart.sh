@@ -37,4 +37,4 @@ while ! check_url; do
     sleep 5
 done
 
-exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}"
+exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}" -- -nocursor

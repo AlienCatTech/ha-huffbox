@@ -1,0 +1,1 @@
+root=PARTUUID=5ad0c4cb-02 rootfstype=ext4 rootwait net.ifnames=0 logo.nologo console=ttyAMA10,115200 console=tty1 cgroup_enable=memory video=HDMI-A-1:1920x1080M@60,rotate=180
